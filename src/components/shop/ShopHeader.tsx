@@ -7,7 +7,7 @@ interface Props {
 const ShopHeader: React.FC<Props> = ({ children }) => {
   return (
     <div className="w-screen row-span-2 row-start-0 bg-black">
-        {children}
+      {children}
     </div>
   );
 };

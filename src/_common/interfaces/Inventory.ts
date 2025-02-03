@@ -11,15 +11,15 @@ import { Shield } from "./Shield";
 import { Weapon } from "./Weapon";
 
 export interface inventory {
-    helmets: Helmet[],
-    weapons: Weapon[],
-    armors: Armor[],
-    shields: Shield[],
-    artifacts: Artifact[],
-    boots: Boot[],
-    rings: Ring[],
-    healing_potions: HealingPotion[],
-    antidote_potions: AntidotePotion[],
-    enhancer_potions: EnhancerPotion[],
-    ingredients: Ingredient[],
+  helmets: Helmet[],
+  weapons: Weapon[],
+  armors: Armor[],
+  shields: Shield[],
+  artifacts: Artifact[],
+  boots: Boot[],
+  rings: Ring[],
+  healing_potions: HealingPotion[],
+  antidote_potions: AntidotePotion[],
+  enhancer_potions: EnhancerPotion[],
+  ingredients: Ingredient[],
 }

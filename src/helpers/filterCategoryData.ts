@@ -7,12 +7,12 @@ import { Shield } from "@/_common/interfaces/Shield";
 import { Weapon } from "@/_common/interfaces/Weapon";
 
 export const filterCategoryData = (data: Weapon[] | Helmet[] | Armor[] | Boot[] | Ring[] | Artifact[] | Shield[]) => {
-    let newData: any = []
+  let newData: any = [];
 
-    data.map((element: Weapon | Helmet | Armor | Boot | Ring | Artifact | Shield) => {
-        if (element.value > 0 && !element.isUnique) 
-            newData = [...newData, element]
-    })
+  data.map((element: Weapon | Helmet | Armor | Boot | Ring | Artifact | Shield) => {
+    if (element.value > 0 && !element.isUnique)
+      newData = [...newData, element];
+  })
 
-    return newData;
+  return newData;
 }

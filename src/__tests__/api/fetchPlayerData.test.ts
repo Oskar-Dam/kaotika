@@ -1,8 +1,8 @@
 import { fetchPlayerData } from "../../pages/api/shop/helpers/fetchPlayerData";
 import { MOCK_PLAYER } from "../mocks";
 
-jest.mock('../../pages/api/shop/helpers/fetchPlayerData', () => ({ 
-  fetchPlayerData: jest.fn(), 
+jest.mock('../../pages/api/shop/helpers/fetchPlayerData', () => ({
+  fetchPlayerData: jest.fn(),
 }));
 
 describe('fetchPlayerData', () => {

@@ -16,7 +16,7 @@ export interface UnPopulatedPlayer {
   profile: Profile | null;
   attributes: Modifier;
   classroom_id: string | null;
-  equipment:{
+  equipment: {
     helmet: string,
     weapon: string,
     armor: string,
@@ -28,7 +28,7 @@ export interface UnPopulatedPlayer {
     antidote_potion: string,
     enhancer_potion: string,
   },
-  inventory:{
+  inventory: {
     helmets: string[],
     weapons: string[],
     armors: string[],

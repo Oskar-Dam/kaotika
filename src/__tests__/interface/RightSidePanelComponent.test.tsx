@@ -12,14 +12,14 @@ describe('RightSidePanel Component', () => {
   const mockHandleQuantityChange: jest.Mock = jest.fn();
 
   const mockPlayer: Player = {
-    _id:'',
-    avatar:'',
-    email:'',
+    _id: '',
+    avatar: '',
+    email: '',
     experience: 0,
     is_active: false,
-    created_date:'',
-    profile:null,
-    attributes:{
+    created_date: '',
+    profile: null,
+    attributes: {
       intelligence: 0,
       dexterity: 12,
       constitution: 0,
@@ -28,7 +28,7 @@ describe('RightSidePanel Component', () => {
       strength: -19,
     },
     classroom_id: '',
-    tasks:[],
+    tasks: [],
     nickname: "Reik",
     name: "Reik",
     gold: 1036,
@@ -249,6 +249,7 @@ describe('RightSidePanel Component', () => {
       ingredients: []
     },
     level: 17,
+    isBetrayer: false
   };
 
   const mockProduct = MOCK_SHIELDS_COLLECTION[1];
@@ -296,23 +297,32 @@ describe('RightSidePanel Component', () => {
     expect(screen.getByText(/your cart is empty/i)).toBeInTheDocument();
   });
 
-  test('renders the buy button and is disabled if conditions are not met', () => {
+  test('displays error message instead of buy button when products cannot be afforded', () => {
     renderCartComponent(expensiveCartWithProducts);
 
-    const buyButton: HTMLElement = screen.getByAltText('Buy');
-    expect(buyButton).toBeInTheDocument();
-    expect(buyButton.closest('div')).toHaveClass('cursor-not-allowed');
+    const errorMessage = screen.getByText("You can't afford all this products");
+    expect(errorMessage).toBeInTheDocument();
+
+    const buyButton = screen.queryByText('BUY');
+    expect(buyButton).not.toBeInTheDocument();
   });
 
-
-  test('renders Buy button with alt text when cart has products', () => {
+  test('displays buy button when cart has products and conditions are met', () => {
     renderCartComponent(cartWithProducts);
-  
-    const buyButtonImg = screen.getByAltText('Buy');
-    expect(buyButtonImg).toBeInTheDocument();
-  
-    const deleteAllButtonImg = screen.getByText('Delete All');
-    expect(deleteAllButtonImg).toBeInTheDocument();
+
+    const buyButton = screen.getByText('BUY').closest('div');
+    expect(buyButton).toBeInTheDocument();
+    expect(buyButton).toHaveClass('cursor-pointer');
+  });
+
+  test('buy button triggers onBuy when clicked', () => {
+    renderCartComponent(cartWithProducts);
+
+    const buyButton = screen.getByText('BUY').closest('div');
+    fireEvent.click(buyButton!);
+
+    expect(mockOnBuy).toHaveBeenCalledTimes(1);
+    expect(mockOnBuy).toHaveBeenCalledWith(cartWithProducts, true);
   });
 
   test('renders the delete all button and calls onClearCart when clicked', () => {
@@ -326,39 +336,31 @@ describe('RightSidePanel Component', () => {
   });
 
 
-  test('renders the buy button and is disabled if conditions are not met', () => {
-      renderCartComponent(cartWithProducts);
-
-      const buyButton: HTMLElement = screen.getByAltText('Buy');
-      expect(buyButton).toBeInTheDocument();
-      expect(buyButton.closest('div')).toHaveClass('cursor-pointer');
-  });
-
   test('renders the delete all div and calls onClearCart when clicked', () => {
     renderCartComponent(cartWithProducts);
-  
+
     const deleteAllDiv = screen.getByText(/Delete All/i);
     fireEvent.click(deleteAllDiv);
     expect(mockOnClearCart).toHaveBeenCalledTimes(1);
   });
 
   test('displays correct gold, cost, and remaining gold values', () => {
-      const cartWithProducts: Cart = [
-        {
-          product: mockProduct,
-          quantity: 3,
-        },
-      ];
+    const cartWithProducts: Cart = [
+      {
+        product: mockProduct,
+        quantity: 3,
+      },
+    ];
 
-      renderCartComponent(cartWithProducts);
+    renderCartComponent(cartWithProducts);
 
-      const totalCost: number = mockProduct.value * 3;
-      const remainingGold: number = mockPlayer.gold - totalCost;
+    const totalCost: number = mockProduct.value * 3;
+    const remainingGold: number = mockPlayer.gold - totalCost;
 
-      expect(screen.getByText(/your gold/i)).toBeInTheDocument();
-      expect(screen.getByText(mockPlayer.gold.toString())).toBeInTheDocument();
-      expect(screen.getAllByText(totalCost.toString()).length).toBeGreaterThan(0);
-      expect(screen.getByText(remainingGold.toString())).toBeInTheDocument();
+    expect(screen.getByText(/your gold/i)).toBeInTheDocument();
+    expect(screen.getByText(mockPlayer.gold.toString())).toBeInTheDocument();
+    expect(screen.getAllByText(totalCost.toString()).length).toBeGreaterThan(0);
+    expect(screen.getByText(remainingGold.toString())).toBeInTheDocument();
   });
 
 

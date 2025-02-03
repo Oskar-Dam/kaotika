@@ -28,18 +28,15 @@ interface Props {
 };
 
 const hasDefense = (product: Product): product is (Helmet | Armor | Boot | Shield) => {
-  return "defense" in product;
+  return typeof product === "object" && product !== null && "defense" in product;
 };
 
 const isWeapon = (product: Product): product is Weapon => {
-  return "base_percentage" in product && "die_faces" in product;
+  return typeof product === "object" && product !== null && "base_percentage" in product && "die_faces" in product;
 };
 
 const isMagical = (product: Product): product is Ingredient => {
-  return "effects" in product;
-};
-const isIngredient = (product: Product): product is Ingredient => {
-  return "qty" in product;
+  return typeof product === "object" && product !== null && "effects" in product;
 };
 
 const MidContainer: React.FC<Props> = ({ product, onBuy, onSell, onAddToCart, player, quantity, displayBuyButtons }) => {
@@ -102,8 +99,7 @@ const MidContainer: React.FC<Props> = ({ product, onBuy, onSell, onAddToCart, pl
     );
     return inInventory || isEquipped;
   };
-  
-  
+
   const cantAfford = (product: Product, quantity: number) => {
     const value = calculatePurchaseValue([product], quantity);
     return !isGoldSufficient(player, value);
