@@ -553,7 +553,7 @@ const PlayerPage = () => {
                   <div className="col-start-1 col-span-1 w-5/6">
                     <User   
                       name="Experience"
-                      description={`${player.experience} xp`}
+                      description={`${Math.trunc(player.experience)} xp`}
                       avatarProps={{
                         src: "/images/icons/experience.png"
                       }}
