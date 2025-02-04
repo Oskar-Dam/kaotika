@@ -4,7 +4,6 @@ import "../styles/globals.css";
 import {NextUIProvider} from "@nextui-org/react";
 import Head from "next/head";
 
-
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <SessionProvider session={pageProps.session}>
@@ -16,7 +15,6 @@ function MyApp({ Component, pageProps }: AppProps) {
       </NextUIProvider>
     </SessionProvider>
   );
-
 }
 
 export default MyApp;

@@ -16,11 +16,10 @@ interface RightSidePanelProps {
   player: Player;
   quantity: number;
   handleQuantityChange: (product: Product, quantity: number) => void;
-}
+};
 
 const RightSidePanel: React.FC<RightSidePanelProps> = ({ isOpen, togglePanel, cart, onRemoveFromCart, onBuy, onClearCart, player, quantity, handleQuantityChange }) => {
   const [ArrowImage, setArrowImage] = useState('');
-  const [buyButtonImage, setBuyButtonImage] = useState('/images/shop/cartButtons.webp');
 
   const cartRef = useRef<HTMLDivElement>(null);
 
@@ -63,14 +62,6 @@ const RightSidePanel: React.FC<RightSidePanelProps> = ({ isOpen, togglePanel, ca
   }, []);
 
   useEffect(() => {
-    if (canAfford()) {
-      setBuyButtonImage('/images/shop/cartButtons.webp');
-    } else {
-      setBuyButtonImage('/images/shop/cartButtonsDisabled.webp');
-    }
-  }, [cart, player.gold]);
-
-  useEffect(() => {
     if (isOpen) {
       document.addEventListener('mousedown', handleClickOutside);
     } else {
@@ -86,13 +77,10 @@ const RightSidePanel: React.FC<RightSidePanelProps> = ({ isOpen, togglePanel, ca
 
     <div
       ref={cartRef}
-      className={`fixed top-[20%] right-0 h-[80%] w-[40.5rem] bg-black border-1 border-sepia z-50 transition-transform duration-300 ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}
-    >
+      className={`fixed top-[20%] right-0 h-[80%] w-[40.5rem] bg-black border-1 border-sepia z-50 transition-transform duration-300 ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
       <button onClick={togglePanel} className="absolute top-[38%] left-[-2.25rem]">
-        <img src={ArrowImage} alt="Toggle Right Panel" className="h-36 w-9"
-        />
+        <img src={ArrowImage} alt="Toggle Right Panel" className="h-36 w-9" />
       </button>
-
       <div className="p-4 text-white flex flex-col h-full b">
         <h2 className="text-4xl font-bold mb-4 text-center">CART</h2>
         <div className="flex-1 w-full overflow-y-auto bg-gray-900 bg-opacity-35 rounded-xl">
@@ -109,10 +97,8 @@ const RightSidePanel: React.FC<RightSidePanelProps> = ({ isOpen, togglePanel, ca
             </p>
           )}
         </div>
-
         {cart.length > 0 && (
           <div className="border-t-2 border-medievalSepia p-4">
-
             <div className="flex-1 bg-medievalSepia bg-opacity-15 rounded-xl p-2">
               <div className="flex justify-between items-center mb-2">
                 <p className="text-3xl font-bold ">Your Gold</p>
@@ -127,12 +113,11 @@ const RightSidePanel: React.FC<RightSidePanelProps> = ({ isOpen, togglePanel, ca
                 <GoldComponent amount={calculateRemaining(calculateTotal())} />
               </div>
             </div>
-
             <div className="flex justify-between items-center h-[43%] mt-[2%] mb-[6%] ">
-            <ShopButton label='DELETE ALL' onClick={onClearCart}/>
-            {canAfford() ? <ShopButton label="BUY" onClick={handleBuyClick} /> : 
-            <p className="text-white text-center text-3xl bg-black border rounded-lg border-sepia bg-opacity-30 h-10">
-                      You can't afford all this products</p>} 
+              <ShopButton label='DELETE ALL' onClick={onClearCart} />
+              {canAfford() ? <ShopButton label="BUY" onClick={handleBuyClick} /> :
+                <p className="text-white text-center text-3xl bg-black border rounded-lg border-sepia bg-opacity-30 h-10">
+                  You can't afford all this products</p>}
             </div>
           </div>
         )}

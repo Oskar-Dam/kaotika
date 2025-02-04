@@ -7,7 +7,7 @@ interface Props {
 const MainContainer: React.FC<Props> = ({ children }) => {
   return (
     <div className="w-screen row-span-8 row-start-3 flex">
-        {children}
+      {children}
     </div>
   );
 };

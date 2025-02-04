@@ -1,6 +1,6 @@
 
 import { filterCategoryData } from "@/helpers/filterCategoryData";
-import { MOCK_ARTIFACTS_COLLECTION, MOCK_HELMET_COLLECTION, MOCK_RINGS_COLLECTION } from "./mocks";
+import { MOCK_ARTIFACTS_COLLECTION, MOCK_RINGS_COLLECTION } from "./mocks";
 import { Helmet } from "@/_common/interfaces/Helmet";
 
 describe('filterCategoryData', () => {
@@ -32,8 +32,8 @@ describe('filterCategoryData', () => {
     }]
     const dataToFilter: any[] = MOCK_RINGS_COLLECTION
 
-    const result =  filterCategoryData(dataToFilter)
-    
+    const result = filterCategoryData(dataToFilter)
+
     expect(result).toEqual(expectedOutput);
   });
 
@@ -41,9 +41,8 @@ describe('filterCategoryData', () => {
     const expectedOutput: Helmet[] = []
     const dataToFilter: any[] = MOCK_ARTIFACTS_COLLECTION
 
-    const result =  filterCategoryData(dataToFilter)
-    
-    expect(result).toEqual(expectedOutput);
-  })
-});
+    const result = filterCategoryData(dataToFilter)
 
+    expect(result).toEqual(expectedOutput);
+  });
+});

@@ -1,12 +1,13 @@
 import mongoose from "mongoose";
 
-const ringSchema = new mongoose.Schema({
+const potionHealingSchema = new mongoose.Schema({
   name: { type: String },
   description: { type: String },
-  type: { type: String },
   image: { type: String },
+  type: { type: String },
   value: { type: Number },
   modifiers: {
+    hit_points: { type: Number },
     intelligence: { type: Number },
     dexterity: { type: Number },
     constitution: { type: Number },
@@ -15,8 +16,6 @@ const ringSchema = new mongoose.Schema({
     strength: { type: Number },
   },
   min_lvl: { type: Number },
-  isUnique: { type: Boolean },
-  isActive: { type: Boolean },
 });
 
-module.exports = mongoose.models.Ring || mongoose.model('Ring', ringSchema);
+module.exports = mongoose.models.PotionHealing || mongoose.model('PotionHealing', potionHealingSchema);

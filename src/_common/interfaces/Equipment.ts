@@ -7,11 +7,11 @@ import { Shield } from "./Shield";
 import { Weapon } from "./Weapon";
 
 export interface Equipment {
-    weapon: Weapon,
-    shield: Shield,
-    helmet: Helmet,
-    armor: Armor,
-    boot: Boot,
-    ring: Ring,
-    artifact: Artifact,
+  weapon: Weapon,
+  shield: Shield,
+  helmet: Helmet,
+  armor: Armor,
+  boot: Boot,
+  ring: Ring,
+  artifact: Artifact,
 }

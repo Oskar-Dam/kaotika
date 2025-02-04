@@ -1,5 +1,3 @@
-import { PROGRESS_LABEL, PROGRESS_VALUE } from '@/constants/constants';
-import { Progress } from '@nextui-org/react';
 import React, { useEffect, useState } from 'react';
 
 interface Props {
@@ -26,7 +24,7 @@ const ShopProgressBar: React.FC<Props> = ({ label, value, itemValue, maxValue })
       value: 0,
       color: "#4acd15",
     }
-  ])
+  ]);
 
   useEffect(() => {
 
@@ -36,7 +34,7 @@ const ShopProgressBar: React.FC<Props> = ({ label, value, itemValue, maxValue })
 
     setNewValue(valueResult)
     setDifferenceValue(differenceResult)
-  }, [value, itemValue])
+  }, [value, itemValue]);
 
   useEffect(() => {
     let newBarValues = [
@@ -48,7 +46,7 @@ const ShopProgressBar: React.FC<Props> = ({ label, value, itemValue, maxValue })
         value: 0,
         color: "#4acd15",
       }
-    ]
+    ];
 
     if (itemValue) {
       if (itemValue > 0) {
@@ -83,7 +81,7 @@ const ShopProgressBar: React.FC<Props> = ({ label, value, itemValue, maxValue })
       }
     }
     setBarValues(newBarValues)
-  }, [newValue, differenceValue])
+  }, [newValue, differenceValue]);
 
   return (
     <>
@@ -103,11 +101,11 @@ const ShopProgressBar: React.FC<Props> = ({ label, value, itemValue, maxValue })
         </div>
       </div>
       <div className="flex inline-row ml-[5%] h-[2.5%] w-[90%] bg-gray-200 dark:bg-neutral-600 rounded-full">
-        <div className="rounded-l-sm" style={{ backgroundColor: barValues[0].color, width: `${barValues[0].value}%` }}/>
-        <div className="bg-red-600 rounded-r-sm" style={{ backgroundColor: barValues[1].color, width: `${barValues[1].value}%` }}/>
+        <div className="rounded-l-sm" style={{ backgroundColor: barValues[0].color, width: `${barValues[0].value}%` }} />
+        <div className="bg-red-600 rounded-r-sm" style={{ backgroundColor: barValues[1].color, width: `${barValues[1].value}%` }} />
       </div>
     </>
-  )
-}
+  );
+};
 
-export default ShopProgressBar
+export default ShopProgressBar;
