@@ -71,9 +71,6 @@ const MidContainer: React.FC<Props> = ({ product, onBuy, onSell, onAddToCart, pl
     setLocalQuantity(newQuantity);
   };
 
-  console.log('PLAYER DATA', player);
-
-
   useEffect(() => {
     if (product) {
       setLocalQuantity(quantity);
