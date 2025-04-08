@@ -18,7 +18,8 @@ export default function CourseList({ onSelectCourse }: CourseListProps) {
         setLoading(true);
         const response = await fetch('/api/classroom/courses')
         const data = await response.json();
-        setCourses(data.courses);
+        console.log(data)
+        setCourses(data.courses.filter((course: { courseState: string; }) => course.courseState === "ACTIVE"));
       } catch (err) {
         console.error(`Course list error: ${err}`);
       } finally {
@@ -38,7 +39,7 @@ export default function CourseList({ onSelectCourse }: CourseListProps) {
         {courses.map((course) => (
           <li key={course.id} className="border rounded-lg p-4" onClick={() => onSelectCourse(course.id)}>
             <div className="flex justify-between items-center">
-              <span className="text-3xl mb-8 text-white">{course.name}</span> 
+              <span className="text-3xl mb-8 text-white">{course.name.toUpperCase()}</span> 
             </div> 
           </li>
         ))}

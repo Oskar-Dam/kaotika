@@ -32,8 +32,7 @@ const AcolytesPage = () => {
         console.log("Fetching courses");
         const res = await fetch('/api/classroom/courses/');
         const data = await res.json();
-        console.log(data);
-        setCourses(data.courses);
+        setCourses(data.courses.filter((course: { courseState: string; }) => course.courseState === "ACTIVE"));
       } catch (error) {
         console.error('Failed to fetch courses:', error);
       } finally {

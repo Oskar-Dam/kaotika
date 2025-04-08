@@ -22,7 +22,7 @@ const CourseDropdown: React.FC = () => {
         setLoading(true);
         const res = await fetch('/api/classroom/courses/');
         const data = await res.json();
-        setCourses(data.courses);
+        setCourses(data.courses.filter((course: { courseState: string; }) => course.courseState === "ACTIVE"));
       } catch (error) {
         console.error('Failed to fetch courses:', error);
       } finally {
@@ -53,7 +53,7 @@ const CourseDropdown: React.FC = () => {
           </option>
           {courses?.map((course) => (
             <option key={course.id} value={course.id}>
-              {course.name}
+              {course.name.toUpperCase()}
             </option>
           ))}
         </select>

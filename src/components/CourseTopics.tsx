@@ -32,7 +32,7 @@ export default function CourseTopics({ courseId, topics, onAssignmentClick }: Co
         <ul className="max-h-96 overflow-y-scroll p-4 bg-gray-800 rounded-md scrollbar-hide">
           {topics?.map((topic) => (
             <li className="text-2xl mb-4 text-white cursor-pointer hover:text-yellow-500" key={topic.topicId} onClick={() => handleTopicClick(topic.topicId)}>
-              {topic.name}
+              {topic.name.toUpperCase()}
             </li>
           ))}
         </ul>

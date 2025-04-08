@@ -4,8 +4,6 @@ export const fetchCategory = async (categoryName: string) => {
 
   if (res.status === 200) {
     const response = await res.json();
-
-    console.log(categoryName, ' fetch complete:', response)
     return response
 
   } else if (res.status === 404) {
