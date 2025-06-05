@@ -20,6 +20,9 @@ const Header: React.FC = () => {
       <Link href="/acolytes">
         <span className={router.pathname == "/acolytes" ? "text-4xl mx-6 underline" :"text-4xl mx-6 hover:underline"}>Bonifications</span>
       </Link>
+      <Link href="/skills">
+        <span className={router.pathname == "/skills" ? "text-4xl mx-6 underline" :"text-4xl mx-6 hover:underline"}>Skills</span>
+      </Link>
       <Link href="/player">
         <span className={router.pathname == "/player" ? "text-4xl mx-6 underline" :"text-4xl mx-6 hover:underline"}>Player</span>
       </Link>
