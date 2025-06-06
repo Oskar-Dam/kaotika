@@ -37,7 +37,7 @@ const fakeSkills = [
     id: "backend",
     epicName: "Artisan of Runic Views",
     description: "Desarrolla interfaces de usuario de aplicaciones web y la funcionalidad asociada. Front-end.",
-    image: "/images/skills/skills.webp",
+    image: "/images/skills/skill_2_bg.webp",
     levels: [
       {
         description: "Conoce los elementos que intervienen en el desarrollo de interfaces web",
