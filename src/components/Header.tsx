@@ -38,8 +38,8 @@ const Header: React.FC = () => {
       <Link href="/player">
         <span className={router.pathname == "/player" ? "text-4xl mx-6 underline" :"text-4xl mx-6 hover:underline"}>Player</span>
       </Link>
-      <Link href="/results">
-        <span className={router.pathname == "/results" ? "text-4xl mx-6 underline" :"text-4xl mx-6 hover:underline"}>Results</span>
+      <Link href="/skills">
+        <span className={router.pathname == "/skills" ? "text-4xl mx-6 underline" :"text-4xl mx-6 hover:underline"}>Skills</span>
       </Link>
       <Link href="/hall">
         <span className={router.pathname == "/hall" ? "text-4xl mx-6 underline" :"text-4xl mx-6 hover:underline"}>Hall of Fame</span>
