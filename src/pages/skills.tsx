@@ -457,6 +457,80 @@ const Skills = () => {
             handleClick={handleClick}
           />
         )}
+        {!isMentor && (
+          fakeSkills.map((skill) => (
+            <div
+            key={skill.id}
+            className="w-full mb-12 relative bg-gray-900 rounded-2xl shadow-lg border-2 border-yellow-700 overflow-hidden"
+          >
+            {/* Imagen de fondo */}
+            <div className="absolute inset-0">
+              <img
+                src={skill.image}
+                alt={skill.epicName}
+                className="object-cover w-full h-full opacity-20"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent" />
+            </div>
+        
+            <div className="relative z-10 p-6 w-full">
+              <h2 className="text-3xl text-yellow-300 font-extrabold mb-2">
+                {skill.epicName}
+              </h2>
+              <p className="text-gray-300 italic mb-6">{skill.description}</p>
+        
+              {/* Niveles */}
+              <div className="flex flex-col md:flex-row gap-6 w-full">
+                {skill.levels.map((level, index) => {
+                  const isActive = level.active;
+                  return (
+                    <div
+                      key={index}
+                      className={`w-full md:w-1/3 p-4 rounded-xl border-2 transition duration-300 relative overflow-hidden bg-gray-800 ${
+                        isActive ? "border-emerald-400 shadow-emerald-600 shadow-md" : "border-gray-600"
+                      }`}
+                    >
+                      {/* Candado solo si no está activo */}
+                      {!isActive && (
+                        <div className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
+                          <img
+                            src="/images/skills/lock.webp"
+                            alt="locked"
+                            className="w-36 h-36 drop-shadow-md"
+                          />
+                        </div>
+                      )}
+
+                      {/* Contenido empaquetado para aplicar opacidad/gris solo a esto */}
+                      <div
+                        className={`relative z-10 space-y-2 ${
+                          isActive ? "" : "grayscale opacity-10 pointer-events-none"
+                        }`}
+                      >
+                        {/* Imagen del sello */}
+                        <div className="w-full h-24 flex items-center justify-center mb-3 bg-black rounded">
+                          <img
+                            src={level.image}
+                            alt={level.epicName}
+                            className="h-full object-contain"
+                          />
+                        </div>
+
+                        {/* Título y descripción */}
+                        <h3 className="text-xl font-bold text-white">{level.epicName}</h3>
+                        <p className="text-sm text-gray-300">{level.description}</p>
+                        <div className="text-xs text-yellow-400">
+                          ✦ EXP: {level.exp} • 💰 Oro: {level.gold}
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+          ))
+        )}
     	</div>
 		</Layout>
   )
