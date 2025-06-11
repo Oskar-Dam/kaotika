@@ -24,25 +24,37 @@ const fakeSkills = [
         exp: 500,
         gold: 500,
         unique: false,
-        active: true
+        active: true,
+        modifier: {
+          name: "Dexterity",
+          value: 5
+        }
       },
       {
         description: "Diseña de manera eficaz y eficiente la arquitectura de aplicaciones web",
         image: "/images/skills/skill_1/level_2.webp",
         epicName: "Silent Adept",
         exp: 1000,
-        gold: 500,
+        gold: 1000,
         unique: false,
-        active: true
+        active: true,
+        modifier: {
+          name: "Constitution",
+          value: 8
+        }
       },
       {
         description: "Analiza y evalúa arquitecturas de aplicaciones web proponiendo mejoras",
         image: "/images/skills/skill_1/level_3.webp",
         epicName: "Arcane Master",
         exp: 1500,
-        gold: 500,
+        gold: 1500,
         unique: false,
-        active: false
+        active: false,
+        modifier: {
+          name: "Insanity",
+          value: 5
+        }
       }
     ]
   },
@@ -59,25 +71,37 @@ const fakeSkills = [
         exp: 500,
         gold: 500,
         unique: false,
-        active: true
+        active: true,
+        modifier: {
+          name: "Charisma",
+          value: 5
+        }
       },
       {
         description: "Desarrolla interfaces web de manera eficaz y eficiente",
         image: "/images/skills/skill_2/level_2.webp",
         epicName: "Whispering Soul",
-        exp: 500,
-        gold: 500,
+        exp: 1000,
+        gold: 1000,
         unique: false,
-        active: false
+        active: false,
+        modifier: {
+          name: "Insanity",
+          value: 5
+        }
       },
       {
         description: "Analiza y evalúa interfaces web proponiendo mejoras",
         image: "/images/skills/skill_2/level_3.webp",
         epicName: "Whispering Soul",
-        exp: 500,
-        gold: 500,
+        exp: 1500,
+        gold: 1500,
         unique: false,
-        active: false
+        active: false,
+        modifier: {
+          name: "Intelligence",
+          value: 10
+        }
       }
     ]
   },
@@ -94,25 +118,37 @@ const fakeSkills = [
         exp: 500,
         gold: 500,
         unique: false,
-        active: true
+        active: true,
+        modifier: {
+          name: "Insanity",
+          value: 5
+        }
       },
       {
         description: "Programa de manera eficaz y eficiente las funcionalidades de aplicaciones web y maneja bases de datos",
         image: "/images/skills/skill_3/level_2.webp",
         epicName: "Whispering Soul",
-        exp: 500,
-        gold: 500,
+        exp: 1000,
+        gold: 1000,
         unique: false,
-        active: true
+        active: false,
+        modifier: {
+          name: "Strength",
+          value: 5
+        }
       },
       {
         description: "Analiza y evalúa programaciones de funcionalidades de aplicaciones web incluídas bases de datos proponiendo mejoras" ,
         image: "/images/skills/skill_3/level_3.webp",
         epicName: "Whispering Soul",
-        exp: 500,
-        gold: 500,
+        exp: 1500,
+        gold: 1500,
         unique: false,
-        active: true
+        active: false,
+        modifier: {
+          name: "Dexterity",
+          value: 10
+        }
       }
     ]
   },
@@ -129,25 +165,37 @@ const fakeSkills = [
         exp: 500,
         gold: 500,
         unique: false,
-        active: true
+        active: true,
+        modifier: {
+          name: "Insanity",
+          value: 5
+        }
       },
       {
         description: "Maneja de manera eficaz y eficiente los recursos necesarios de servidor para implementar y publicar aplicaciones web",
         image: "/images/skills/skill_4/level_2.webp",
         epicName: "Whispering Soul",
-        exp: 500,
-        gold: 500,
+        exp: 1000,
+        gold: 1000,
         unique: false,
-        active: true
+        active: true,
+        modifier: {
+          name: "Insanity",
+          value: 5
+        }
       },
       {
         description: "Analiza y evalúa implementaciones y publicaciones web proponiendo mejoras" ,
         image: "/images/skills/skill_4/level_3.webp",
         epicName: "Whispering Soul",
-        exp: 500,
-        gold: 500,
+        exp: 1500,
+        gold: 1500,
         unique: false,
-        active: true
+        active: false,
+        modifier: {
+          name: "Insanity",
+          value: 5
+        }
       }
     ]
   },
@@ -164,25 +212,37 @@ const fakeSkills = [
         exp: 500,
         gold: 500,
         unique: false,
-        active: true
+        active: true,
+        modifier: {
+          name: "Insanity",
+          value: 5
+        }
       },
       {
         description: "Trabaja en equipo de manera eficaz y eficiente con metodologías ágiles y sistemas de control de versiones",
         image: "/images/skills/skill_5/level_2.webp",
         epicName: "Whispering Soul",
-        exp: 500,
-        gold: 500,
+        exp: 1000,
+        gold: 1000,
         unique: false,
-        active: true
+        active: true,
+        modifier: {
+          name: "Insanity",
+          value: 5
+        }
       },
       {
         description: "Analiza y evalúa trabajo en equipo con metodologías ágiles y sistemas de control de versiones proponiendo mejoras" ,
         image: "/images/skills/skill_5/level_3.webp",
         epicName: "Whispering Soul",
-        exp: 500,
-        gold: 500,
+        exp: 1500,
+        gold: 1500,
         unique: false,
-        active: true
+        active: false,
+        modifier: {
+          name: "Insanity",
+          value: 5
+        }
       }
     ]
   },
@@ -199,14 +259,18 @@ const fakeSkills = [
         exp: 500,
         gold: 500,
         unique: false,
-        active: true
+        active: true,
+        modifier: {
+          name: "Insanity",
+          value: 5
+        }
       },
       {
         description: "Mantiene el esfuerzo para alcanzar metas",
         image: "/images/skills/skill_6/level_2.webp",
         epicName: "Whispering Soul",
-        exp: 500,
-        gold: 500,
+        exp: 1000,
+        gold: 1000,
         unique: false,
         active: true
       },
@@ -214,10 +278,14 @@ const fakeSkills = [
         description: "Analiza y evalúa procesos que ayudan o dificultan conseguir metas proponiendo mejoras" ,
         image: "/images/skills/skill_6/level_3.webp",
         epicName: "Whispering Soul",
-        exp: 500,
-        gold: 500,
+        exp: 1500,
+        gold: 1500,
         unique: false,
-        active: true
+        active: false,
+        modifier: {
+          name: "Insanity",
+          value: 5
+        }
       }
     ]
   },
@@ -234,25 +302,37 @@ const fakeSkills = [
         exp: 500,
         gold: 500,
         unique: false,
-        active: true
+        active: true,
+        modifier: {
+          name: "Insanity",
+          value: 5
+        }
       },
       {
         description: "Utiliza la comprensión de los conceptos clave para aplicarlos en situaciones prácticas de comunicación en idioma Euskera, Inglés y Castellano. ",
         image: "/images/skills/skill_7/level_2.webp",
         epicName: "Whispering Soul",
-        exp: 500,
-        gold: 500,
+        exp: 1000,
+        gold: 1000,
         unique: false,
-        active: true
+        active: true,
+        modifier: {
+          name: "Insanity",
+          value: 5
+        }
       },
       {
         description: "Evalúa y crea soluciones innovadoras en situaciones prácticas de documentación técnica y comunicación en idioma Euskera, Inglés y Castellano." ,
         image: "/images/skills/skill_7/level_3.webp",
         epicName: "Whispering Soul",
-        exp: 500,
-        gold: 500,
+        exp: 1500,
+        gold: 1500,
         unique: false,
-        active: true
+        active: true,
+        modifier: {
+          name: "Insanity",
+          value: 5
+        }
       }
     ]
   },
@@ -269,25 +349,37 @@ const fakeSkills = [
         exp: 500,
         gold: 500,
         unique: false,
-        active: true
+        active: true,
+        modifier: {
+          name: "Strength",
+          value: 5
+        }
       },
       {
         description: "Aplica las herramientas de prevención de riesgos laborales.",
         image: "/images/skills/skill_8/level_2.webp",
         epicName: "Whispering Soul",
-        exp: 500,
-        gold: 500,
+        exp: 1000,
+        gold: 1000,
         unique: false,
-        active: true
+        active: true,
+        modifier: {
+          name: "Charisma",
+          value: 10
+        }
       },
       {
         description: "Gestiona la prevención de riesgos laborales y primeros auxilios." ,
         image: "/images/skills/skill_8/level_3.webp",
         epicName: "Whispering Soul",
-        exp: 500,
-        gold: 500,
+        exp: 1500,
+        gold: 1500,
         unique: false,
-        active: true
+        active: false,
+        modifier: {
+          name: "Insanity",
+          value: 5
+        }
       }
     ]
   },
@@ -433,7 +525,7 @@ const Skills = () => {
     <Layout>
     	<div className="flex flex-col items-center space-y-6 w-full px-4">
         
-        {!selectedCourse && (
+        {isMentor && !selectedCourse && (
           <CourseSelector
             courses={courses}
             selectedCourse={selectedCourse}
@@ -441,7 +533,7 @@ const Skills = () => {
             loading={loading}
           />
         )}
-        {selectedCourse && !selectedStudent && (
+        {isMentor && selectedCourse && !selectedStudent && (
           <StudentSelector
             students={students}
             selectedStudent={selectedStudent}
@@ -449,7 +541,7 @@ const Skills = () => {
             loading={loading}
           />
         )}
-        {selectedStudent && (
+        {isMentor && selectedStudent && (
           <SkillGrid
             skills={fakeSkills}
             selectedStudent={selectedStudent}
@@ -460,75 +552,78 @@ const Skills = () => {
         {!isMentor && (
           fakeSkills.map((skill) => (
             <div
-            key={skill.id}
-            className="w-full mb-12 relative bg-gray-900 rounded-2xl shadow-lg border-2 border-yellow-700 overflow-hidden"
-          >
-            {/* Imagen de fondo */}
-            <div className="absolute inset-0">
-              <img
-                src={skill.image}
-                alt={skill.epicName}
-                className="object-cover w-full h-full opacity-20"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent" />
-            </div>
-        
-            <div className="relative z-10 p-6 w-full">
-              <h2 className="text-3xl text-yellow-300 font-extrabold mb-2">
-                {skill.epicName}
-              </h2>
-              <p className="text-gray-300 italic mb-6">{skill.description}</p>
-        
-              {/* Niveles */}
-              <div className="flex flex-col md:flex-row gap-6 w-full">
-                {skill.levels.map((level, index) => {
-                  const isActive = level.active;
-                  return (
-                    <div
-                      key={index}
-                      className={`w-full md:w-1/3 p-4 rounded-xl border-2 transition duration-300 relative overflow-hidden bg-gray-800 ${
-                        isActive ? "border-emerald-400 shadow-emerald-600 shadow-md" : "border-gray-600"
-                      }`}
-                    >
-                      {/* Candado solo si no está activo */}
-                      {!isActive && (
-                        <div className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
-                          <img
-                            src="/images/skills/lock.webp"
-                            alt="locked"
-                            className="w-36 h-36 drop-shadow-md"
-                          />
-                        </div>
-                      )}
-
-                      {/* Contenido empaquetado para aplicar opacidad/gris solo a esto */}
+              key={skill.id}
+              className="w-1/2 mb-12 relative bg-gray-900 rounded-2xl shadow-lg border-2 border-yellow-700 overflow-hidden"
+            >
+              {/* Imagen de fondo */}
+              <div className="absolute inset-0">
+                <img
+                  src={skill.image}
+                  alt={skill.epicName}
+                  className="object-cover w-full h-full opacity-30"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent" />
+              </div>
+          
+              <div className="relative z-10 p-6 w-full">
+                <h2 className="text-3xl text-center text-yellow-300  mb-2">
+                  {skill.epicName}
+                </h2>
+                <p className="text-2xl text-medievalSepia text-center  mb-6">{skill.description}</p>
+          
+                {/* Niveles */}
+                <div className="flex flex-col md:flex-row gap-6 w-full">
+                  {skill.levels.map((level, index) => {
+                    const isActive = level.active;
+                    return (
                       <div
-                        className={`relative z-10 space-y-2 ${
-                          isActive ? "" : "grayscale opacity-10 pointer-events-none"
+                        key={index}
+                        className={`w-full md:w-1/3 p-4 rounded-xl border-2 transition duration-300 relative overflow-hidden  ${
+                          isActive ? "border-medievalSepia " : "border-gray-800"
                         }`}
                       >
-                        {/* Imagen del sello */}
-                        <div className="w-full h-24 flex items-center justify-center mb-3 bg-black rounded">
-                          <img
-                            src={level.image}
-                            alt={level.epicName}
-                            className="h-full object-contain"
-                          />
-                        </div>
+                        {/* Candado solo si no está activo */}
+                        {!isActive && (
+                          <div className="absolute inset-0 flex flex-col items-center justify-center z-20 pointer-events-none">
+                            <img
+                              src="/images/skills/lock.webp"
+                              alt="locked"
+                              className="drop-shadow-md"
+                            />
+                            <div className="text-3xl text-medievalGold">
+                              <p>✦ Exp: <span className="text-medievalSepia">{level.exp}</span></p>
+                               <p>✦ Gold: <span className="text-medievalSepia">{level.gold}</span></p>
+                               <p>✦ <span className="text-medievalSepia">{level.modifier?.name} + {level.modifier?.value}</span></p>
+                            </div>
+                          </div>
+                          
+                        )}
 
-                        {/* Título y descripción */}
-                        <h3 className="text-xl font-bold text-white">{level.epicName}</h3>
-                        <p className="text-sm text-gray-300">{level.description}</p>
-                        <div className="text-xs text-yellow-400">
-                          ✦ EXP: {level.exp} • 💰 Oro: {level.gold}
+                        {/* Contenido empaquetado para aplicar opacidad/gris solo a esto */}
+                        <div
+                          className={`relative z-10 space-y-2 text-center${
+                            isActive ? "" : "grayscale opacity-10 pointer-events-none"
+                          }`}
+                        >
+                          {/* Imagen del sello */}
+                          <div className="flex justify-center mb-3">
+                            <img
+                              src={level.image}
+                              alt={level.epicName}
+                              className="h-full object-contain"
+                            />
+                          </div>
+
+                          {/* Título y descripción */}
+                          <h3 className="text-3xl text-medievalSepia">{level.epicName}</h3>
+                          <p className="text-2xl text-medievalGold">{level.description}</p>
                         </div>
                       </div>
-                    </div>
-                  );
-                })}
+                    );
+                  })}
+                </div>
               </div>
             </div>
-          </div>
           ))
         )}
     	</div>
