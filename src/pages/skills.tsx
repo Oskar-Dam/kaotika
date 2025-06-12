@@ -9,6 +9,9 @@ import CourseSelector from '@/components/skills/CourseSelector';
 import StudentSelector from '@/components/skills/StudentsSelector';
 import SkillGrid from '@/components/skills/SkillGrid';
 import { Skill } from '@/_common/interfaces/Skill';
+import { useSessionControl } from "@/hooks/useSessionControl";
+import { useCourseStudents } from '@/hooks/useCourseStudents';
+import { useStudentSkills } from '@/hooks/useStudentSkills';
 
 const fakeSkills = [
   {
@@ -200,7 +203,7 @@ const fakeSkills = [
     ]
   },
   {
-    id: "morti",
+    id: "morfdfti",
     epicName: "Brotherhood of Code Trials",
     description: "Trabaja en equipo con metodologías ágiles, sistemas de control de versiones e implementa tests unitarios.",
     image: "/images/skills/skill_5/skill_5_bg.webp",
@@ -247,7 +250,7 @@ const fakeSkills = [
     ]
   },
   {
-    id: "morti",
+    id: "mortdsfdsi",
     epicName: "Path of the Resolute",
     description: "Persevera en la tarea superando dificultades con autonomía y completando las metas comprometidas.",
     image: "/images/skills/skill_6/skill_6_bg.webp",
@@ -290,7 +293,7 @@ const fakeSkills = [
     ]
   },
   {
-    id: "morti",
+    id: "morsdfdsfti",
     epicName: "Tongue of the Guilds",
     description: "Maneja documentación técnica y se comunica con fluidez de forma oral y escrita con clientes y proveedores en idioma Euskera, Inglés y Castellano.",
     image: "/images/skills/skill_7/skill_7_bg.webp",
@@ -337,7 +340,7 @@ const fakeSkills = [
     ]
   },
   {
-    id: "morti",
+    id: "msfdorti",
     epicName: "Arquitectura de Portales Arcanos",
     description: "Comprende los riesgos laborales, su prevención y la gestión de la prevención y los primeros auxilios en la empresa.",
     image: "/images/skills/skill_8/skill_8_bg.webp",
@@ -403,24 +406,45 @@ const handleClick = (position: number, skill: Skill, selectedStudent: string) =>
 
 const Skills = () => {
   const { data: session } = useSession();
-  const [courses, setCourses] = useState<Course[]>([]);
+ // const [courses, setCourses] = useState<Course[]>([]);
   const [selectedCourse, setSelectedCourse] = useState<string | null>(null);
   const [selectedStudent, setSelectedStudent] = useState<string | null>(null);
-  const [loading, setLoading] = useState<boolean>(false);
-	const [students, setStudents] = useState<Student[]>([]);
+  //const [loading, setLoading] = useState<boolean>(false);
+	//const [students, setStudents] = useState<Student[]>([]);
   const [currentSkillsForSelectedStudent, setCurrentSkillsForSelectedStudent] = useState<Student>();
-  const [error, setError] = useState<string | null>(null);
-  const [currentSkills, setCurrentSkills] = useState<Skill[] | null>(null);
-  const [isMentor, setIsMentor] = useState<boolean>(false);
+  //const [error, setError] = useState<string | null>(null);
+ // const [currentSkills, setCurrentSkills] = useState<Skill[] | null>(null);
+  //const [isMentor, setIsMentor] = useState<boolean>(false);
 
-  useEffect(() => {
+
+  const { 
+    isMentor, 
+    loading: sessionLoading,
+    error: sessionError,
+    courses, 
+    currentSkills 
+  } = useSessionControl();
+  const { 
+    students, 
+    loading: studentsLoading,
+    error: studentsError, 
+  } = useCourseStudents(selectedCourse);
+  const { 
+    skills, 
+    loading: skillsLoading, 
+    error : skillsError
+  } = useStudentSkills(selectedStudent);
+
+  const isLoading = sessionLoading || studentsLoading || skillsLoading;
+  /* useEffect(() => {
+    
     if (!session?.user?.email) return;
 
-    const isUserMentor = session.user.email.endsWith(MENTOR_EMAIL);
-    setIsMentor(isUserMentor);
-  
+    const isMentorUser = session.user.email.endsWith(MENTOR_EMAIL);
+    setIsMentor(isMentorUser); 
+
     const fetchCourses = async () => {
-      try {
+      try { 
         setLoading(true);
         console.log("Fetching courses");
         const res = await fetch('/api/classroom/courses/');
@@ -436,7 +460,7 @@ const Skills = () => {
     const fetchPlayerSkills = async () => {
       try {
         setLoading(true);
-        const res = await fetch(`/api/player/skills/email?email=${session.user?.email}`);
+        const res = await fetch(`/api/player/skills/email?email=${session?.user?.email}`);
         if (res.status === 200) {
           const response = await res.json();
           console.log(response.data)
@@ -455,7 +479,7 @@ const Skills = () => {
       }
     }
 
-    if (isMentor) {
+    if (isMentorUser) {
       console.log("User is mentor: fetching courses");
       fetchCourses();
     } else {
@@ -506,7 +530,7 @@ const Skills = () => {
     }
     
     fetchStudentSkillsByClassroomId(selectedStudent);
-  }, [selectedStudent]);
+  }, [selectedStudent]); */
 
   
 
@@ -518,7 +542,7 @@ const Skills = () => {
     setSelectedStudent(studentId);
   };
 
-  if (loading) {
+  if (isLoading) {
     return <Loading />;
   }
   return (
@@ -530,7 +554,7 @@ const Skills = () => {
             courses={courses}
             selectedCourse={selectedCourse}
             handleCourseSelect={handleCourseSelect}
-            loading={loading}
+            loading={isLoading}
           />
         )}
         {isMentor && selectedCourse && !selectedStudent && (
@@ -538,7 +562,7 @@ const Skills = () => {
             students={students}
             selectedStudent={selectedStudent}
             handleStudentSelect={handleStudentSelect}
-            loading={loading}
+            loading={isLoading}
           />
         )}
         {isMentor && selectedStudent && (
@@ -553,9 +577,9 @@ const Skills = () => {
           fakeSkills.map((skill) => (
             <div
               key={skill.id}
-              className="w-1/2 mb-12 relative bg-gray-900 rounded-2xl shadow-lg border-2 border-yellow-700 overflow-hidden"
+              className="w-2/3 mb-12 relative bg-gray-900 rounded-2xl shadow-lg border-2 border-yellow-700 overflow-hidden"
             >
-              {/* Imagen de fondo */}
+
               <div className="absolute inset-0">
                 <img
                   src={skill.image}
@@ -570,8 +594,7 @@ const Skills = () => {
                   {skill.epicName}
                 </h2>
                 <p className="text-2xl text-medievalSepia text-center  mb-6">{skill.description}</p>
-          
-                {/* Niveles */}
+                         
                 <div className="flex flex-col md:flex-row gap-6 w-full">
                   {skill.levels.map((level, index) => {
                     const isActive = level.active;
@@ -582,7 +605,7 @@ const Skills = () => {
                           isActive ? "border-medievalSepia " : "border-gray-800"
                         }`}
                       >
-                        {/* Candado solo si no está activo */}
+                        
                         {!isActive && (
                           <div className="absolute inset-0 flex flex-col items-center justify-center z-20 pointer-events-none">
                             <img
@@ -599,13 +622,12 @@ const Skills = () => {
                           
                         )}
 
-                        {/* Contenido empaquetado para aplicar opacidad/gris solo a esto */}
                         <div
                           className={`relative z-10 space-y-2 text-center${
                             isActive ? "" : "grayscale opacity-10 pointer-events-none"
                           }`}
                         >
-                          {/* Imagen del sello */}
+
                           <div className="flex justify-center mb-3">
                             <img
                               src={level.image}
@@ -614,7 +636,6 @@ const Skills = () => {
                             />
                           </div>
 
-                          {/* Título y descripción */}
                           <h3 className="text-3xl text-medievalSepia">{level.epicName}</h3>
                           <p className="text-2xl text-medievalGold">{level.description}</p>
                         </div>
