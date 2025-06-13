@@ -6,22 +6,20 @@ export const useStudentSkills = (selectedStudent: string | null) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
+  const fetchSkills = async () => {
     if (!selectedStudent) return;
-
-    const fetchSkills = async () => {
-      try {
-        setLoading(true);
-        const res = await fetch(`/api/player/by-classroom-id/${selectedStudent}`);
-        const data = await res.json();
-        setSkills(data);
-      } catch (error) {
-        setError('Failed to fetch student skills');
-      } finally {
-        setLoading(false);
-      }
-    };
-
+    try {
+      setLoading(true);
+      const res = await fetch(`/api/player/skills/by-classroom-id?classroomId=${selectedStudent}`);
+      const result = await res.json();
+      setSkills(result.data);
+    } catch (error) {
+      setError('Failed to fetch student skills');
+    } finally {
+      setLoading(false);
+    }
+  };
+  useEffect(() => {
     fetchSkills();
   }, [selectedStudent]);
 

@@ -34,7 +34,7 @@ export const useSessionControl = () => {
     const fetchPlayerSkills = async () => {
       try {
         setLoading(true);
-        const res = await fetch(`/api/player/skills/email?email=${session?.user?.email}`);
+        const res = await fetch(`/api/player/skills/by-email?email=${session?.user?.email}`);
         if (res.status === 200) {
           const data = await res.json();
           setCurrentSkills(data.data);

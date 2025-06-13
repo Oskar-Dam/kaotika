@@ -424,11 +424,13 @@ const Skills = () => {
     courses, 
     currentSkills 
   } = useSessionControl();
+
   const { 
     students, 
     loading: studentsLoading,
     error: studentsError, 
   } = useCourseStudents(selectedCourse);
+
   const { 
     skills, 
     loading: skillsLoading, 
@@ -566,15 +568,23 @@ const Skills = () => {
           />
         )}
         {isMentor && selectedStudent && (
+          <>
+          <StudentSelector
+            students={students}
+            selectedStudent={selectedStudent}
+            handleStudentSelect={handleStudentSelect}
+            loading={isLoading}
+          />
           <SkillGrid
-            skills={fakeSkills}
+            skills={skills}
             selectedStudent={selectedStudent}
             canClick={canClick}
             handleClick={handleClick}
           />
+          </>
         )}
         {!isMentor && (
-          fakeSkills.map((skill) => (
+          currentSkills.map((skill) => (
             <div
               key={skill.id}
               className="w-2/3 mb-12 relative bg-gray-900 rounded-2xl shadow-lg border-2 border-yellow-700 overflow-hidden"
@@ -616,7 +626,7 @@ const Skills = () => {
                             <div className="text-3xl text-medievalGold">
                               <p>✦ Exp: <span className="text-medievalSepia">{level.exp}</span></p>
                                <p>✦ Gold: <span className="text-medievalSepia">{level.gold}</span></p>
-                               <p>✦ <span className="text-medievalSepia">{level.modifier?.name} + {level.modifier?.value}</span></p>
+                               {/*<p>✦ <span className="text-medievalSepia">{level.modifier?.name} + {level.modifier?.value}</span></p>*/}
                             </div>
                           </div>
                           
