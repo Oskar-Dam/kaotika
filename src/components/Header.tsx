@@ -13,7 +13,7 @@ const Header: React.FC = () => {
 
   let navigation;
   if (session?.user?.email?.endsWith(MENTOR_EMAIL)){
-    navigation = (<nav className="flex-1 text-center">
+    navigation = (<nav className="flex-1 text-center text-medievalSepia">
       <Link href="/dashboard">
         <span className={router.pathname == "/dashboard" ? "text-4xl mx-6 underline" :"text-4xl mx-6 hover:underline"}>Converter</span>
       </Link>

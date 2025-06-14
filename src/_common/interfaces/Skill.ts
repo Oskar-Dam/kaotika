@@ -9,7 +9,7 @@ interface Level {
 } 
 
 export interface Skill {
-  id: string,
+  _id: string,
   epicName: string,
   description: string,
   image: string,

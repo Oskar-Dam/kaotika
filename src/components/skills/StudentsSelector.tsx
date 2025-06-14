@@ -19,7 +19,7 @@ interface StudentSelectorProps {
 const StudentSelector: React.FC<StudentSelectorProps> = ({ students, selectedStudent, handleStudentSelect, loading }) => (
   <div className="relative w-full max-w-3xl">
     <select
-      className="block w-full bg-gray-800 text-white border border-gray-800 rounded-md pl-6 pr-10 text-2xl"
+      className="block w-full bg-gray-800 border border-medievalGold rounded-md p-2 pr-10 text-3xl text-medievalSepia"
       onChange={(e) => handleStudentSelect(e.target.value)}
       value={selectedStudent || ''}
     >

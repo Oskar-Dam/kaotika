@@ -397,8 +397,8 @@ const canClick = (position: number, skill: Skill) => {
 
 const handleClick = (position: number, skill: Skill, selectedStudent: string) => {
   if(canClick(position, skill)) {
-    console.log(selectedStudent)
-    console.log(skill.id);
+    console.log(selectedStudent);
+    console.log(skill._id);
     console.log(skill.levels[position].description);
     console.log(position);
   }
@@ -586,7 +586,7 @@ const Skills = () => {
         {!isMentor && (
           currentSkills.map((skill) => (
             <div
-              key={skill.id}
+              key={skill._id}
               className="w-2/3 mb-12 relative bg-gray-900 rounded-2xl shadow-lg border-2 border-yellow-700 overflow-hidden"
             >
 
