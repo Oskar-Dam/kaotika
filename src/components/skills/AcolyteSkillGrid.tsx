@@ -11,7 +11,7 @@ const AcolyteSkillGrid: React.FC<AcolyteSkillGridProps> = ({ skills }) => {
     <div className="flex flex-wrap justify-center">
       {skills.map((skill) =>
         skill.levels.map((level, i) => (
-          <AcolyteSkillCard key={`${skill.id}-${i}`} level={level} isActive={level.active} />
+          <AcolyteSkillCard key={`${skill._id}-${i}`} level={level} isActive={level.active} />
         ))
       )}
     </div>
