@@ -3,7 +3,6 @@ import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure
 import Layout from '@/components/Layout';
 import Loading from '@/components/Loading';
 import { useState } from 'react';
-import { Student } from '@/_common/interfaces/Student';
 import CourseSelector from '@/components/skills/CourseSelector';
 import StudentSelector from '@/components/skills/StudentsSelector';
 import SkillGrid from '@/components/skills/SkillGrid';
@@ -22,8 +21,6 @@ import { useApplySkill } from '@/hooks/useApplySkill';
 }
 
 const Skills = () => {
-  const { data: session } = useSession();
-  const [loading, setLoading] = useState<boolean>(false);
   const [selectedCourse, setSelectedCourse] = useState<string | null>(null);
   const [selectedStudent, setSelectedStudent] = useState<string | null>(null);
   const [currentSkillsForSelectedStudent, setCurrentSkillsForSelectedStudent] = useState<currentSkillForSelectedStudent>();
