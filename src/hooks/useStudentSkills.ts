@@ -1,12 +1,12 @@
 import { Skill } from '@/_common/interfaces/Skill';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 export const useStudentSkills = (selectedStudent: string | null) => {
   const [skills, setSkills] = useState<Skill[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchSkills = async () => {
+  const fetchSkills = useCallback(async () => {
     if (!selectedStudent) return;
     try {
       setLoading(true);
@@ -18,10 +18,11 @@ export const useStudentSkills = (selectedStudent: string | null) => {
     } finally {
       setLoading(false);
     }
-  };
-  useEffect(() => {
-    fetchSkills();
   }, [selectedStudent]);
 
-  return { skills, loading, error };
+  useEffect(() => {
+    fetchSkills();
+  }, [fetchSkills]);
+
+  return { skills, loading, error, refetchSkills: fetchSkills };
 };
