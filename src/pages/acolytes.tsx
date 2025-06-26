@@ -133,11 +133,11 @@ const AcolytesPage = () => {
 
   return (
 		<Layout>
-      <div className="flex justify-center mt-8">
+      <div className="flex justify-center">
 				{!selectedCourse && (
 					<div className="relative inline-block w-1/2">
 						<select
-							className="block w-full bg-gray-800 text-white border border-gray-800 rounded-md py-4 pl-6 pr-10 text-4xl"
+							className="block w-full bg-gray-800 border border-medievalGold rounded-md p-2 pr-10 text-3xl text-medievalSepia"
 							onChange={(e) => handleCourseSelect(e.target.value)}
 							value={selectedCourse || ''}
 						>

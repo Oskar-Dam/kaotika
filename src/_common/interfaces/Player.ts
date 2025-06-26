@@ -12,6 +12,7 @@ import { Ring } from "./Ring";
 import { Modifier } from "./Modifier";
 import { Task } from "./Task";
 import { Ingredient } from "./Ingredient";
+import { Skill } from "./Skill";
 
 export interface Player {
   _id: string;
@@ -53,5 +54,6 @@ export interface Player {
     ingredients: Ingredient[]
   },
   tasks: Task[],
+  skills: Skill[],
   isBetrayer: boolean
 }

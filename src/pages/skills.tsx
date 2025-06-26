@@ -21,7 +21,6 @@ import { useApplySkill } from '@/hooks/useApplySkill';
   skillPosition: number
 }
 
-
 const Skills = () => {
   const { data: session } = useSession();
   const [loading, setLoading] = useState<boolean>(false);
