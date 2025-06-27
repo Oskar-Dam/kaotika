@@ -34,7 +34,10 @@ const Header: React.FC = () => {
       </Link>
     </nav>);
   } else {
-    navigation = (<nav className="flex-1 text-center">     
+    navigation = (<nav className="flex-1 text-center">  
+      <Link href="/rules">
+        <span className={router.pathname == "/rules" ? "text-4xl mx-6 underline" :"text-4xl mx-6 hover:underline"}>Rules</span>
+      </Link>   
       <Link href="/player">
         <span className={router.pathname == "/player" ? "text-4xl mx-6 underline" :"text-4xl mx-6 hover:underline"}>Player</span>
       </Link>
