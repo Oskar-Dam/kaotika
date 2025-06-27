@@ -106,7 +106,10 @@ const Skills = () => {
   }
   return (
     <Layout>
+     
       <div className="relative min-h-screen text-white p-8 flex flex-col items-center overflow-hidden">
+      {!isMentor && (
+        <>
         <video
           className="fixed inset-0 w-full h-full object-cover z-0"
           autoPlay
@@ -118,6 +121,8 @@ const Skills = () => {
         </video>
 
         <div className="fixed inset-0 bg-black/50 z-10"></div>
+        </>
+        )}
     	<div className="flex flex-col items-center space-y-6 w-full px-4">
         
         {isMentor && !selectedCourse && (
