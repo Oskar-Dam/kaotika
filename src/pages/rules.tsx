@@ -106,16 +106,16 @@ const Rules = () => {
             📜 The Epic Rules of Our Guild
           </h1>
 
-          <div className="max-w-4xl w-full grid gap-8">
+          <div className="w-full grid gap-8">
             {fakeRules.map((rule) => (
               <div
                 key={rule._id}
-                className="border-2 border-yellow-700 bg-black/30 rounded-xl p-6 shadow-lg hover:bg-black/50 transition"
+                className="border-2 border-yellow-700 bg-black/50 rounded-xl p-6 shadow-lg hover:bg-black/50 transition"
               >
                 <h2 className="text-3xl text-center text-medievalSepia mb-4">
                   ⚔️ {rule.epicName}
                 </h2>
-                <ul className="list-disc list-inside space-y-2 text-lg">
+                <ul className="list-disc list-inside space-y-2">
                   {rule.description.map((desc, index) => (
                     <li key={index} className="text-medievalSepia text-2xl">
                       {desc}

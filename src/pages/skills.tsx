@@ -106,6 +106,18 @@ const Skills = () => {
   }
   return (
     <Layout>
+      <div className="relative min-h-screen text-white p-8 flex flex-col items-center overflow-hidden">
+        <video
+          className="fixed inset-0 w-full h-full object-cover z-0"
+          autoPlay
+          loop
+          muted
+          playsInline
+        >
+          <source src="/videos/skills-bg.mp4" type="video/mp4" />
+        </video>
+
+        <div className="fixed inset-0 bg-black/50 z-10"></div>
     	<div className="flex flex-col items-center space-y-6 w-full px-4">
         
         {isMentor && !selectedCourse && (
@@ -144,20 +156,10 @@ const Skills = () => {
           currentSkills.map((skill) => (
             <div
               key={skill._id}
-              className="w-2/3 mb-12 relative bg-gray-900 rounded-2xl shadow-lg border-2 border-yellow-700 overflow-hidden"
+              className="w-2/3 mb-12 relative rounded-2xl shadow-lg border-2 border-medievalSepia overflow-hidden"
             >
-
-              <div className="absolute inset-0">
-                <img
-                  src={skill.image}
-                  alt={skill.epicName}
-                  className="object-cover w-full h-full opacity-30"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent" />
-              </div>
-          
-              <div className="relative z-10 p-6 w-full">
-                <h2 className="text-3xl text-center text-yellow-300  mb-2">
+              <div className="relative z-10 p-6 w-full bg-black/50">
+                <h2 className="text-3xl text-center text-medievalSepia  mb-2">
                   {skill.epicName}
                 </h2>
                 <p className="text-2xl text-medievalSepia text-center  mb-6">{skill.description}</p>
@@ -231,6 +233,7 @@ const Skills = () => {
           )}
         </ModalContent>
       </Modal>
+      </div>
 		</Layout>
   )
 }
