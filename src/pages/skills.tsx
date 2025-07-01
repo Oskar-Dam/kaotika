@@ -1,5 +1,5 @@
 import { useSession } from 'next-auth/react';
-import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure } from "@nextui-org/react";
+import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure, Tooltip } from "@nextui-org/react";
 import Layout from '@/components/Layout';
 import Loading from '@/components/Loading';
 import { useState } from 'react';
@@ -163,7 +163,7 @@ const Skills = () => {
               key={skill._id}
               className="w-2/3 mb-12 relative rounded-2xl shadow-lg border-2 border-medievalSepia overflow-hidden"
             >
-              <div className="relative z-10 p-6 w-full bg-black/50">
+              <div className="relative z-10 p-6 w-full bg-black/70">
                 <h2 className="text-3xl text-center text-medievalSepia  mb-2">
                   {skill.epicName}
                 </h2>
@@ -173,6 +173,13 @@ const Skills = () => {
                   {skill.levels.map((level, index) => {
                     const isActive = level.active;
                     return (
+                      <Tooltip
+                            className="w-auto text-3xl mb-4 border-1 rounded-lg border-sepia bg-black/90"
+                            placement="top"
+                            size="sm"
+                            showArrow={true}
+                            content={level.description}
+                          >
                       <div
                         key={index}
                         className={`w-full md:w-1/3 p-4 rounded-xl border-2 transition duration-300 relative overflow-hidden  ${
@@ -181,18 +188,28 @@ const Skills = () => {
                       >
                         
                         {!isActive && (
-                          <div className="absolute inset-0 flex flex-col items-center justify-center z-20 pointer-events-none">
-                            <img
-                              src="/images/skills/lock.webp"
-                              alt="locked"
-                              className="drop-shadow-md"
-                            />
-                            <div className="text-3xl text-medievalGold">
-                              <p>✦ Exp: <span className="text-medievalSepia">{level.exp}</span></p>
-                               <p>✦ Gold: <span className="text-medievalSepia">{level.gold}</span></p>
-                               {/*<p>✦ <span className="text-medievalSepia">{level.modifier?.name} + {level.modifier?.value}</span></p>*/}
+
+                          
+                            <div className="absolute inset-0 flex flex-col items-center justify-center z-20 pointer-events-none">
+                              <img
+                                src="/images/skills/lock.webp"
+                                alt="locked"
+                                className="drop-shadow-md"
+                              />
+                              <div className="w-full text-3xl text-medievalGold">
+                                <div className="flex flex-row justify-around">
+                                  <span className="text-medievalSepia">Exp: {level.exp}</span>  
+                                  <span className="text-medievalSepia">Gold: {level.gold}</span>
+                                </div>
+                                <div className="flex flex-row justify-around">
+                                  <span className="text-medievalSepia">{level.unique ? "Unique Item" : "Magical Item"}</span>  
+                                  <span className="text-medievalSepia">{level.bonus ? `+${level.bonus.value}% ${level.bonus.attribute}` : null}</span>    
+                                </div>
+                                <div className="text-center">
+                                  <span className="text-medievalSepia">Altar de la Experiencia 5</span>
+                                </div>
+                              </div>
                             </div>
-                          </div>
                           
                         )}
 
@@ -214,6 +231,7 @@ const Skills = () => {
                           <p className="text-2xl text-medievalGold">{level.description}</p>
                         </div>
                       </div>
+                      </Tooltip>
                     );
                   })}
                 </div>
