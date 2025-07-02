@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 
 export const useCourseStudents = (selectedCourse: string | null) => {
   const [students, setStudents] = useState<Student[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [studentsLoading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -26,5 +26,5 @@ export const useCourseStudents = (selectedCourse: string | null) => {
     fetchStudents();
   }, [selectedCourse]);
 
-  return { students, loading, error };
+  return { students, studentsLoading, error };
 };

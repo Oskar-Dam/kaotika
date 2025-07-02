@@ -1,8 +1,3 @@
-interface Bonus {
-  attribute: string;
-  value:number;
-}
-
 interface Level {
   description: string;
   image: string;
@@ -11,7 +6,8 @@ interface Level {
   gold: number;
   unique: boolean;
   active: boolean;
-  bonus: Bonus;
+  bonus: number;
+  unlockedBy: string[];
 } 
 
 export interface Skill {

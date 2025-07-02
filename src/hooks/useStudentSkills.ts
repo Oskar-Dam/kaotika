@@ -3,7 +3,7 @@ import { useState, useEffect, useCallback } from 'react';
 
 export const useStudentSkills = (selectedStudent: string | null) => {
   const [skills, setSkills] = useState<Skill[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [skillsLoading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const fetchSkills = useCallback(async () => {
@@ -24,5 +24,5 @@ export const useStudentSkills = (selectedStudent: string | null) => {
     fetchSkills();
   }, [fetchSkills]);
 
-  return { skills, loading, error, refetchSkills: fetchSkills };
+  return { skills, skillsLoading, error, refetchSkills: fetchSkills };
 };

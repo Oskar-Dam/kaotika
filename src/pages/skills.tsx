@@ -37,13 +37,13 @@ const Skills = () => {
 
   const { 
     students, 
-    loading: studentsLoading,
+    studentsLoading,
     error: studentsError, 
   } = useCourseStudents(selectedCourse);
 
   const { 
     skills, 
-    loading: skillsLoading, 
+    skillsLoading, 
     error : skillsError,
     refetchSkills
   } = useStudentSkills(selectedStudent);
@@ -164,22 +164,22 @@ const Skills = () => {
               className="w-2/3 mb-12 relative rounded-2xl shadow-lg border-2 border-medievalSepia overflow-hidden"
             >
               <div className="relative z-10 p-6 w-full bg-black/70">
-                <h2 className="text-3xl text-center text-medievalSepia  mb-2">
+                <h2 className="text-4xl text-center text-green-500  mb-2">
                   {skill.epicName}
                 </h2>
-                <p className="text-2xl text-medievalSepia text-center  mb-6">{skill.description}</p>
+                <p className="text-3xl text-medievalSepia text-center  mb-6">{skill.description}</p>
                          
                 <div className="flex flex-col md:flex-row gap-6 w-full">
                   {skill.levels.map((level, index) => {
                     const isActive = level.active;
                     return (
                       <Tooltip
-                            className="w-auto text-3xl mb-4 border-1 rounded-lg border-sepia bg-black/90"
-                            placement="top"
-                            size="sm"
-                            showArrow={true}
-                            content={level.description}
-                          >
+                        className="w-auto text-3xl mb-4 border-1 rounded-lg border-sepia bg-black/90"
+                        placement="top"
+                        size="sm"
+                        showArrow={true}
+                        content={level.description}
+                      >
                       <div
                         key={index}
                         className={`w-full md:w-1/3 p-4 rounded-xl border-2 transition duration-300 relative overflow-hidden  ${
@@ -188,29 +188,50 @@ const Skills = () => {
                       >
                         
                         {!isActive && (
-
-                          
-                            <div className="absolute inset-0 flex flex-col items-center justify-center z-20 pointer-events-none">
-                              <img
-                                src="/images/skills/lock.webp"
-                                alt="locked"
-                                className="drop-shadow-md"
-                              />
-                              <div className="w-full text-3xl text-medievalGold">
-                                <div className="flex flex-row justify-around">
-                                  <span className="text-medievalSepia">Exp: {level.exp}</span>  
-                                  <span className="text-medievalSepia">Gold: {level.gold}</span>
-                                </div>
-                                <div className="flex flex-row justify-around">
-                                  <span className="text-medievalSepia">{level.unique ? "Unique Item" : "Magical Item"}</span>  
-                                  <span className="text-medievalSepia">{level.bonus ? `+${level.bonus.value}% ${level.bonus.attribute}` : null}</span>    
-                                </div>
-                                <div className="text-center">
-                                  <span className="text-medievalSepia">Altar de la Experiencia 5</span>
-                                </div>
+                          <div className="absolute inset-0 flex flex-col items-center justify-center z-20 pointer-events-none">
+                            <div className="w-full flex flex-row justify-around text-3xl">
+                            <span className="text-medievalSepia">
+                              <span className="text-medievalGold">Exp:</span> {level.exp}
+                            </span>  
+                            <span className="text-medievalSepia">
+                              <span className="text-medievalGold">Gold:</span> {level.gold}
+                            </span>
+                            </div>
+                            <img
+                              src="/images/skills/lock.webp"
+                              alt="locked"
+                              className="drop-shadow-md"
+                            />
+                            <div className="w-full text-2xl text-medievalGold">
+                              <div className="flex flex-col text-center">
+                                <span className="text-medievalSepia">
+                                  {level.unique ? 
+                                    <span className="text-medievalGold">Unlocks: <span className="text-orange-400">Unique Kaotika Item</span> </span> 
+                                    :
+                                    <span className="text-medievalGold">Unlocks: <span className="text-medievalSepia">Common Magical Item</span> </span>
+                                  }
+                                </span>  
+                                <span className="text-medievalSepia">
+                                  {level.bonus ? 
+                                    <span className="text-medievalGold">Apply: <span className="text-orange-400"> + {level.bonus} to all attributes</span> </span> 
+                                    :
+                                    <span className="text-medievalSepia">No bonification</span>
+                                  }
+                                </span>    
+                              </div>
+                              <div className="text-center">
+                                <span className="text-medievalGold">{level.unlockedBy.length > 0 ? <span>Blocked by: </span> : <span>Blocked by: Lady Rubinia</span>}</span>
+                                  {level.unlockedBy.map((unlock, index)=> 
+                                    <span className="text-xl text-medievalSepia">
+                                      {index > 0 && (
+                                        <span className="text-medievalGold">&nbsp;&amp;&nbsp;</span>
+                                      )}
+                                      {unlock}
+                                    </span>
+                                  )}
                               </div>
                             </div>
-                          
+                          </div>
                         )}
 
                         <div
@@ -227,7 +248,7 @@ const Skills = () => {
                             />
                           </div>
 
-                          <h3 className="text-3xl text-medievalSepia">{level.epicName}</h3>
+                          <h3 className="text-3xl text-green-500">{level.epicName}</h3>
                           <p className="text-2xl text-medievalGold">{level.description}</p>
                         </div>
                       </div>
