@@ -40,9 +40,9 @@ const SkillLevel: React.FC<SkillLevelProps> = ({ level, index, skill, selectedSt
         selectedStudent={selectedStudent}
       />
       <div className="flex flex-col items-center text-2xl text-medievalSepia">
-        <span className={!level.active ? "text-gray-800" : ""}>{level.epicName}</span>
-        <span className={!level.active ? "text-gray-800" : ""}>+ {level.exp} exp</span>
-        <span className={!level.active ? "text-gray-800" : ""}>+ {level.gold} gold coins</span>
+        <span className={!level.active ? "text-gray-500" : ""}>{level.epicName}</span>
+        <span className={!level.active ? "text-gray-500" : ""}>+ {level.exp} exp</span>
+        <span className={!level.active ? "text-gray-500" : ""}>+ {level.gold} gold coins</span>
       </div>
     </div>
   </Tooltip>
