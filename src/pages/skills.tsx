@@ -161,7 +161,7 @@ const Skills = () => {
           currentSkills.map((skill) => (
             <div
               key={skill._id}
-              className="w-2/3 mb-12 relative rounded-2xl shadow-lg border-2 border-medievalSepia overflow-hidden"
+              className="w-full mb-12 relative rounded-2xl shadow-lg border-2 border-medievalSepia overflow-hidden"
             >
               <div className="relative z-10 p-6 w-full bg-black/70">
                 <h2 className="text-4xl text-center text-green-500  mb-2">
@@ -182,7 +182,7 @@ const Skills = () => {
                       >
                       <div
                         key={index}
-                        className={`w-full md:w-1/3 p-4 rounded-xl border-2 transition duration-300 relative overflow-hidden  ${
+                        className={`w-full md:w-1/3 p-6 rounded-xl border-2 transition duration-300 relative overflow-hidden  ${
                           isActive ? "border-medievalSepia " : "border-gray-800"
                         }`}
                       >
@@ -190,37 +190,44 @@ const Skills = () => {
                         {!isActive && (
                           <div className="absolute inset-0 flex flex-col items-center justify-center z-20 pointer-events-none">
                             <div className="w-full flex flex-row justify-around text-3xl">
-                            <span className="text-medievalSepia">
-                              <span className="text-medievalGold">Exp:</span> {level.exp}
-                            </span>  
-                            <span className="text-medievalSepia">
-                              <span className="text-medievalGold">Gold:</span> {level.gold}
-                            </span>
+                              <div className="flex flex-col items-center">
+                                <img src="/images/skills/exp.webp" alt="Exp Icon" className="w-24 h-24 mb-1 object-contain" />
+                                <span className="text-medievalSepia">
+                                  <span className="text-medievalGold">Exp:</span> {level.exp}
+                                </span>
+                              </div>
+
+                              <div className="flex flex-col items-center">
+                                <img src="/images/skills/gold.webp" alt="Gold Icon" className="w-24 h-24 mb-1" />
+                                <span className="text-medievalSepia">
+                                  <span className="text-medievalGold">Gold:</span> {level.gold}
+                                </span>
+                              </div>
                             </div>
                             <img
                               src="/images/skills/lock.webp"
                               alt="locked"
-                              className="drop-shadow-md"
+                              className="drop-shadow-md w-48 h-48"
                             />
                             <div className="w-full text-2xl text-medievalGold">
                               <div className="flex flex-col text-center">
                                 <span className="text-medievalSepia">
                                   {level.unique ? 
-                                    <span className="text-medievalGold">Unlocks: <span className="text-orange-400">Unique Kaotika Item</span> </span> 
+                                    <span className="text-medievalGold">Unlocks: <span className="text-orange-500">Unique Kaotika Item</span> </span> 
                                     :
                                     <span className="text-medievalGold">Unlocks: <span className="text-medievalSepia">Common Magical Item</span> </span>
                                   }
                                 </span>  
                                 <span className="text-medievalSepia">
                                   {level.bonus ? 
-                                    <span className="text-medievalGold">Apply: <span className="text-orange-400"> + {level.bonus} to all attributes</span> </span> 
+                                    <span className="text-medievalGold">Apply: <span className="text-orange-500"> + {level.bonus} to all attributes</span> </span> 
                                     :
                                     <span className="text-medievalSepia">No bonification</span>
                                   }
                                 </span>    
                               </div>
                               <div className="text-center">
-                                <span className="text-medievalGold">{level.unlockedBy.length > 0 ? <span>Blocked by: </span> : <span>Blocked by: Lady Rubinia</span>}</span>
+                                <span className="text-medievalGold"><span>Blocked by: </span></span>
                                   {level.unlockedBy.map((unlock, index)=> 
                                     <span className="text-xl text-medievalSepia">
                                       {index > 0 && (
