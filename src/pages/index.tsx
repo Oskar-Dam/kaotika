@@ -27,7 +27,7 @@ const Home = () => {
             if (email.endsWith(ACOLYTE_EMAIL)) {
               router.push('/player');
             } else if (email.endsWith(MENTOR_EMAIL)) {
-              router.push('/dashboard');
+              router.push('/converter');
             }
           } else if (res.status === 404) {
             router.push('/welcome');
