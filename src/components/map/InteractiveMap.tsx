@@ -1,6 +1,10 @@
 "use client";
-import { MapPoint } from "@/_common/interfaces/MapPoint";
+
 import React from "react";
+import { MapPoint } from "@/_common/interfaces/MapPoint";
+import MovingFog from "./MovingFog";
+import Image from "next/image";
+import { motion } from "framer-motion";
 
 type InteractiveMapProps = {
   imageUrl: string;
@@ -23,19 +27,47 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({
         />
     	</div>
 
-      {/* Puntos */}
       {points.map((point) => (
-        <button
+        <div
           key={point.id}
-          onClick={() => onPointClick && onPointClick(point)}
-          className="absolute transform -translate-x-1/2 -translate-y-1/2 bg-black hover:bg-red-900 text-white text-xl px-2 py-1 rounded-full shadow-md"
+          className="absolute transform -translate-x-1/2 -translate-y-1/2"
           style={{
             left: `${point.xPercent}%`,
             top: `${point.yPercent}%`,
           }}
         >
-          {point.name}
-        </button>
+          {point.isUnlocked ? (
+            <button
+              onClick={() => onPointClick && onPointClick(point)}
+              className="bg-black/50 hover:bg-red-900 text-white text-xl px-2 py-1 rounded-full shadow-md"
+            >
+              {point.name}
+            </button>
+          ) : (
+            <motion.div
+              className="relative w-[700px] aspect-video  pointer-events-none"
+              initial={{ opacity: 1, scale: 1 }}
+              animate={{
+                scale: [1, 1.01, 1],
+              }}
+              transition={{
+                duration: 6,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            >
+              <Image
+                src="/images/maps/fog.png" 
+                alt="Fog Block"
+                fill
+                
+              />
+            </motion.div>
+          )}
+        </div>
+      ))}
+      {[...Array(3)].map((_, index) => (
+        <MovingFog key={index} />
       ))}
     </div>
   );

@@ -3,4 +3,5 @@ export interface MapPoint {
   name: string;
   xPercent: number;
   yPercent: number;
+  isUnlocked: boolean;
 };
