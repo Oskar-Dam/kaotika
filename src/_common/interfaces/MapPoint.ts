@@ -3,5 +3,7 @@ export interface MapPoint {
   name: string;
   xPercent: number;
   yPercent: number;
+  fogPercentX: number;
+  fogPercentY: number;
   isUnlocked: boolean;
 };

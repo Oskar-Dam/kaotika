@@ -12,11 +12,7 @@ type InteractiveMapProps = {
   onPointClick?: (point: MapPoint) => void;
 };
 
-const InteractiveMap: React.FC<InteractiveMapProps> = ({
-  imageUrl,
-  points,
-  onPointClick,
-}) => {
+const InteractiveMap: React.FC<InteractiveMapProps> = ({imageUrl, points, onPointClick,}) => {
   return (
     <div className="fixed inset-0 overflow-hidden">
       <div className="absolute inset-0">
@@ -28,24 +24,34 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({
     	</div>
 
       {points.map((point) => (
-        <div
-          key={point.id}
-          className="absolute transform -translate-x-1/2 -translate-y-1/2"
-          style={{
-            left: `${point.xPercent}%`,
-            top: `${point.yPercent}%`,
-          }}
-        >
-          {point.isUnlocked ? (
+        
+        point.isUnlocked ? (
+          <div
+            key={point.id}
+            className="absolute transform -translate-x-1/2 -translate-y-1/2"
+            style={{
+              left: `${point.xPercent}%`,
+              top: `${point.yPercent}%`,
+            }}
+          >
             <button
               onClick={() => onPointClick && onPointClick(point)}
-              className="bg-black/50 hover:bg-red-900 text-white text-xl px-2 py-1 rounded-full shadow-md"
+              className="bg-black/50 hover:bg-medievalSepia hover:text-black text-white text-xl px-2 py-1 rounded-full shadow-md"
             >
               {point.name}
             </button>
-          ) : (
+          </div>
+        ) : (
+          <div
+            key={point.id}
+            className="absolute transform -translate-x-1/2 -translate-y-1/2"
+            style={{
+              left: `${point.fogPercentX}%`,
+              top: `${point.fogPercentY}%`,
+            }}
+          >
             <motion.div
-              className="relative w-[700px] aspect-video  pointer-events-none"
+              className="relative w-[400px] max-w-[80vw] aspect-video pointer-events-none"
               initial={{ opacity: 1, scale: 1 }}
               animate={{
                 scale: [1, 1.01, 1],
@@ -56,15 +62,10 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({
                 ease: "easeInOut",
               }}
             >
-              <Image
-                src="/images/maps/fog.png" 
-                alt="Fog Block"
-                fill
-                
-              />
+              <Image src="/images/maps/fog_1.png" alt="Fog Block" fill />
             </motion.div>
-          )}
-        </div>
+          </div>
+        )
       ))}
       {[...Array(3)].map((_, index) => (
         <MovingFog key={index} />

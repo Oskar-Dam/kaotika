@@ -34,7 +34,7 @@ const Header: React.FC = () => {
       </Link>
     </nav>);
   } else {
-    navigation = (<nav className="flex-1 text-center">  
+    navigation = (<nav className="flex-1 text-center text-medievalSepia">  
       <Link href="/rules">
         <span className={router.pathname == "/rules" ? "text-4xl mx-6 underline" :"text-4xl mx-6 hover:underline"}>Rules</span>
       </Link>  
@@ -57,7 +57,7 @@ const Header: React.FC = () => {
   }
 
   return (
-    <header className="fixed w-full bg-black text-white shadow-md py-4 z-50">
+    <header className="fixed w-full bg-black/50 text-white shadow-md py-4 z-50">
       <div className="container mx-auto flex items-center justify-between">
         <div className="flex items-center"> 
           <Image src="/images/kaotika.png" alt="Logo" width={200} height={60} />
