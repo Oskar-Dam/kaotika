@@ -1,3 +1,4 @@
+import { Topic } from "@/_common/interfaces/Topic";
 
 export const getStudentClassrooms = async (token: string) => {
   try {
@@ -19,6 +20,21 @@ export const getStudentClassrooms = async (token: string) => {
   }
 };
 
+export const getCourseTopics = async (token: string, courseId: string): Promise<Topic[]>  => {
+  const res = await fetch(`https://classroom.googleapis.com/v1/courses/${courseId}/topics`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch topics");
+  }
+
+  const data = await res.json();
+  return data.topic || [];
+};
+
 export const getOpenTasksFromClassroom = async (token: string, courseId: string) => {
   try {
     const res = await fetch(
@@ -29,12 +45,12 @@ export const getOpenTasksFromClassroom = async (token: string, courseId: string)
         },
       }
     );
-
+    const courseWorks = await res.json();
     if (!res.ok) {
       throw new Error(`Failed to fetch course work: ${res.statusText}`);
     }
 
-    const data = await res.json();
+    /* const data = await res.json();
     const courseWork = data.courseWork || [];
 
     const openTasks = [];
@@ -67,8 +83,8 @@ export const getOpenTasksFromClassroom = async (token: string, courseId: string)
         openTasks.push(task);
       }
     }
-
-    return openTasks;
+*/
+    return courseWorks; 
   } catch (error) {
     console.error("Error fetching open tasks:", error);
     throw error;
