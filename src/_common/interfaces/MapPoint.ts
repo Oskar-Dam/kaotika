@@ -3,7 +3,11 @@ export interface MapPoint {
   name: string;
   xPercent: number;
   yPercent: number;
-  fogPercentX: number;
-  fogPercentY: number;
   isUnlocked: boolean;
+  description: string;
+  video: string;
+  image: string;
+  blockedSkills: string[],
+  exp: number;
+  gold: number;
 };

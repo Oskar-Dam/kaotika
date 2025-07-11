@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import React from 'react';
 import Image from "next/image";
+import { MAP_CONFIG } from '@/config/map';
 
 
 const MovingFog = () => {
@@ -23,7 +24,7 @@ const MovingFog = () => {
       style={{ width: size, height: size * 0.5625 }}
     >
       <Image
-        src="/images/maps/fog.png" 
+        src={MAP_CONFIG.dinamic_fog}
         alt="Fog moving"
         fill
         className="object-cover opacity-70"

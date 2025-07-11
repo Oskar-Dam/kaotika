@@ -5,6 +5,7 @@ import { MapPoint } from "@/_common/interfaces/MapPoint";
 import MovingFog from "./MovingFog";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { MAP_CONFIG } from "@/config/map";
 
 type InteractiveMapProps = {
   imageUrl: string;
@@ -36,7 +37,7 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({imageUrl, points, onPoin
           >
             <button
               onClick={() => onPointClick && onPointClick(point)}
-              className="bg-black/50 hover:bg-medievalSepia hover:text-black text-white text-xl px-2 py-1 rounded-full shadow-md"
+              className="bg-black/30 hover:bg-medievalSepia hover:text-black text-white text-xl px-2 py-1 rounded-full shadow-md"
             >
               {point.name}
             </button>
@@ -46,8 +47,8 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({imageUrl, points, onPoin
             key={point.id}
             className="absolute transform -translate-x-1/2 -translate-y-1/2"
             style={{
-              left: `${point.fogPercentX}%`,
-              top: `${point.fogPercentY}%`,
+              left: `${point.xPercent}%`,
+              top: `${point.yPercent}%`,
             }}
           >
             <motion.div
@@ -62,7 +63,7 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({imageUrl, points, onPoin
                 ease: "easeInOut",
               }}
             >
-              <Image src="/images/maps/fog_1.png" alt="Fog Block" fill />
+              <Image src={MAP_CONFIG.static_fog} alt="Fog Block" fill />
             </motion.div>
           </div>
         )
