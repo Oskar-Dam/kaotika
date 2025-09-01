@@ -1,7 +1,8 @@
 export const MAP_POINTS  = [
     {
-      id: "topic1",
+      id: "0",
       name: "The port of Kaltis",
+      mapPointName:"The port of Kaltis",
       xPercent: 90,
       yPercent: 32,
       isUnlocked: false,
@@ -13,8 +14,9 @@ export const MAP_POINTS  = [
       gold: 100
     },
     {
-      id: "gfg",
+      id: "1",
       name: "The Inn of the Forgotten",
+      mapPointName:"The Inn of the Forgotten",
       xPercent: 35,
       yPercent: 45,
       isUnlocked: false,
@@ -26,12 +28,13 @@ export const MAP_POINTS  = [
       gold: 100
     },
     {
-      id: "topfgfdgic2",
+      id: "2",
       name: "The Old School",
+      mapPointName:"The Old School",
       xPercent: 49,
       yPercent: 55,
       isUnlocked:false,
-      description: "",
+      description: "Within the venerable halls of The Old School, Joseph reigns as the wise Headmaster, guiding his order of mentors who forge knowledge into the minds of their young acolytes with steadfast honour and ancient tradition.",
       video: "",
       image: "",
       blockedSkills: [],
@@ -39,10 +42,25 @@ export const MAP_POINTS  = [
       gold: 100
     },
     {
-      id: "fdgdfgfd",
-      name: "The Dravokar lineage",
-      xPercent: 76,
-      yPercent: 17,
+      id: "3",
+      name: "Angelo's Laboratory",
+      mapPointName:"Angelo's Laboratory",
+      xPercent: 49,
+      yPercent: 65,
+      isUnlocked:false,
+      description: "Within the venerable halls of The Old School, Joseph reigns as the wise Headmaster, guiding his order of mentors who forge knowledge into the minds of their young acolytes with steadfast honour and ancient tradition.",
+      video: "",
+      image: "",
+      blockedSkills: [],
+      exp: 100,
+      gold: 100
+    },
+    {
+      id: "4",
+      name: "Aivan's Chest",
+      mapPointName:"Aivan's Chest",
+      xPercent: 53,
+      yPercent: 68,
       isUnlocked: false,
       description: "",
       video: "",
@@ -52,8 +70,9 @@ export const MAP_POINTS  = [
       gold: 100
     },
     {
-      id: "topifgfgdfc2",
+      id: "5",
       name: "The Swamp Tower",
+      mapPointName:"The Swamp Tower",
       xPercent: 65,
       yPercent: 28,
       isUnlocked:false,
@@ -65,11 +84,12 @@ export const MAP_POINTS  = [
       gold: 100
     },
     {
-      id: "topifdgfdgc2",
-      name: "The Hollow of the lost",
-      xPercent: 8,
-      yPercent: 37,
-      isUnlocked: false,
+      id: "6",
+      name: "The Arcane Artifacts",
+      mapPointName:"The Arcane Artifacts",
+      xPercent: 65,
+      yPercent: 28,
+      isUnlocked:false,
       description: "",
       video: "",
       image: "",
@@ -78,8 +98,23 @@ export const MAP_POINTS  = [
       gold: 100
     },
     {
-      id: "topicfgfd2",
+      id: "7",
+      name: "The Hollow of the lost",
+      mapPointName:"The Hollow of the lost",
+      xPercent: 8,
+      yPercent: 37,
+      isUnlocked: false,
+      description: "Deep within The Hollow of the Lost, shadows whisper forgotten names, and the spirits of those who wandered astray linger, seeking the light they were denied.",
+      video: "https://www.youtube.com/embed/YPe-7yGZCpg",
+      image: "",
+      blockedSkills: [],
+      exp: 100,
+      gold: 100
+    },
+    {
+      id: "8",
       name: "Valley of Wounds",
+      mapPointName:"Valley of Wounds",
       xPercent: 45,
       yPercent: 35,
       isUnlocked: false,
@@ -91,13 +126,14 @@ export const MAP_POINTS  = [
       gold: 100
     },
     {
-      id: "topicfg2",
+      id: "9",
       name: "Ethrael",
+      mapPointName:"Ethrael",
       xPercent: 61,
       yPercent: 60,
       isUnlocked:false,
       description: "",
-      video: "",
+      video: "https://youtu.be/HF698NLlqkk",
       image: "",
       blockedSkills: [],
       exp: 100,
@@ -105,8 +141,9 @@ export const MAP_POINTS  = [
     },
     
     {
-      id: "topicsss2",
+      id: "9",
       name: "City of the Dead",
+      mapPointName:"City of the Dead",
       xPercent: 48,
       yPercent: 17,
       isUnlocked: false,
@@ -119,3 +156,5 @@ export const MAP_POINTS  = [
     },
 
   ];
+
+  

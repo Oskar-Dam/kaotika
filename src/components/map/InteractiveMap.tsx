@@ -39,7 +39,7 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({imageUrl, points, onPoin
               onClick={() => onPointClick && onPointClick(point)}
               className="bg-black/30 hover:bg-medievalSepia hover:text-black text-white text-xl px-2 py-1 rounded-full shadow-md"
             >
-              {point.name}
+              {point.mapPointName}
             </button>
           </div>
         ) : (

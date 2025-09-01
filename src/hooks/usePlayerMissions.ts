@@ -27,7 +27,7 @@ export const usePlayerMissions = () => {
 
         const mapPoints = MAP_POINTS.map(point => {
           const isUnlocked = topics.some(topic =>
-            topic.name.toLowerCase().includes(point.name.toLowerCase())
+            topic.name.toLowerCase().includes(point.mapPointName.toLowerCase())
           );
           return {
             ...point,

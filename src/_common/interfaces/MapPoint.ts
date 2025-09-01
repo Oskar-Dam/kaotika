@@ -1,6 +1,7 @@
 export interface MapPoint {
   id: string;
   name: string;
+  mapPointName: string;
   xPercent: number;
   yPercent: number;
   isUnlocked: boolean;
