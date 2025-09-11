@@ -35,8 +35,16 @@ const Map = () => {
             points={mapPoints}
             onPointClick={handlePointClick}
           />
-        ) : (
-          <p>No hay acceso a la aventura</p>
+        ) : ( 
+        <div className="relative min-h-screen text-white p-8 flex flex-col items-center overflow-hidden">
+          <video
+            className="fixed inset-0 w-full h-full object-cover z-0"
+            autoPlay
+            playsInline
+          >
+            <source src="/videos/map.mp4" type="video/mp4" />
+          </video>
+        </div>
         )
       }
       <Modal size='5xl' isOpen={isOpen} onClose={handleClose} onOpenChange={onOpenChange}>
