@@ -1,3 +1,3 @@
 export const CLASSROOM_CONFIG = {
-  currentAdventure: "KAOTIKA TEST"
+  currentAdventure: "2526 - ER6 - KAOTIKA, The Dravokars' Revenge"
 }
