@@ -22,7 +22,9 @@ export const usePlayerMissions = () => {
 
       try {
         const playerClassrooms: Classroom[] = await getStudentClassrooms(token);
-        const kaotikaAdventureClassroom = playerClassrooms.filter(classroom=> classroom.name === CLASSROOM_CONFIG.currentAdventure);
+        console.log(playerClassrooms)
+        const kaotikaAdventureClassroom = playerClassrooms.filter(classroom=> classroom.id === CLASSROOM_CONFIG.currentAdventure);
+        console.log(kaotikaAdventureClassroom)
         const topics = await getCourseTopics(token, kaotikaAdventureClassroom[0].id);
 
         const mapPoints = MAP_POINTS.map(point => {
