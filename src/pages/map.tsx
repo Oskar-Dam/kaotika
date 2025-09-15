@@ -54,14 +54,6 @@ const Map = () => {
               <ModalHeader className="flex flex-col gap-1 text-medievalSepial text-center text-3xl">{currentMapPoint?.name}</ModalHeader>
               <ModalBody>
                 <p className="flex flex-col gap-1 text text-center text-2xl">{currentMapPoint?.description}</p>
-                <iframe
-                  width="100%"
-                  height="400"
-                  src={videoSrc}
-                  title={currentMapPoint?.name}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
               </ModalBody>
               <ModalFooter>
                 
