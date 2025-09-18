@@ -54,9 +54,19 @@ const Map = () => {
               <ModalHeader className="flex flex-col gap-1 text-medievalSepial text-center text-3xl">{currentMapPoint?.name}</ModalHeader>
               <ModalBody>
                 <p className="flex flex-col gap-1 text text-center text-2xl">{currentMapPoint?.description}</p>
+                
+                  <video
+                    className=" inset-0 object-cover z-0"
+                    autoPlay
+                    loop
+                    playsInline
+                  >
+                    <source src={currentMapPoint?.video} type="video/mp4" />
+                  </video>
+                
               </ModalBody>
               <ModalFooter>
-                
+                 
               </ModalFooter>
             </>
           )}
