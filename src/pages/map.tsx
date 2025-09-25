@@ -6,6 +6,7 @@ import InteractiveMap from '@/components/map/InteractiveMap';
 import { usePlayerMissions } from '@/hooks/usePlayerMissions';
 import Loading from '@/components/Loading';
 import { MAP_CONFIG } from '@/config/map';
+import MapPointModal from '@/components/map/MapPointModal';
 
 const Map = () => {
 
@@ -47,31 +48,12 @@ const Map = () => {
         </div>
         )
       }
-      <Modal size='5xl' isOpen={isOpen} onClose={handleClose} onOpenChange={onOpenChange}>
-        <ModalContent>
-          {(onClose) => (
-            <>
-              <ModalHeader className="flex flex-col gap-1 text-medievalSepial text-center text-3xl">{currentMapPoint?.name}</ModalHeader>
-              <ModalBody>
-                <p className="flex flex-col gap-1 text text-center text-2xl">{currentMapPoint?.description}</p>
-                
-                  <video
-                    className=" inset-0 object-cover z-0"
-                    autoPlay
-                    loop
-                    playsInline
-                  >
-                    <source src={currentMapPoint?.video} type="video/mp4" />
-                  </video>
-                
-              </ModalBody>
-              <ModalFooter>
-                 
-              </ModalFooter>
-            </>
-          )}
-        </ModalContent>
-      </Modal>
+      <MapPointModal
+        isOpen={isOpen}
+        onClose={onClose}
+        onOpenChange={onOpenChange}
+        point={currentMapPoint}
+      />
     </Layout>
   );
 }

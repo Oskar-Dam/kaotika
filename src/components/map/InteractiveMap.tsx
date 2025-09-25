@@ -32,13 +32,6 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({
         // Aseguramos que isUnlocked sea booleano
         const unlocked = Boolean(point.isUnlocked);
 
-        // Log de debug
-        console.log(
-          `Point ${point.id} (${point.mapPointName}) isUnlocked:`,
-          point.isUnlocked,
-          "-> interpreted as boolean:", unlocked
-        );
-
         const positionStyle = {
           left: `${point.xPercent}%`,
           top: `${point.yPercent}%`,
@@ -84,4 +77,4 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({
   );
 };
 
-export default InteractiveMap;
+export default React.memo(InteractiveMap);
