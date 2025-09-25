@@ -36,7 +36,7 @@ export const usePlayerMissions = () => {
             isUnlocked,
           };
         });
-
+        console.log(mapPoints)
         setMapPoints(mapPoints ?? []);
       } catch (err) {
         console.error(err);

@@ -13,61 +13,70 @@ type InteractiveMapProps = {
   onPointClick?: (point: MapPoint) => void;
 };
 
-const InteractiveMap: React.FC<InteractiveMapProps> = ({imageUrl, points, onPointClick,}) => {
+const InteractiveMap: React.FC<InteractiveMapProps> = ({
+  imageUrl,
+  points,
+  onPointClick,
+}) => {
   return (
     <div className="fixed inset-0 overflow-hidden">
       <div className="absolute inset-0">
         <img
-        src={imageUrl}
-        alt="Medieval Map"
-        className="w-full h-full object-cover"
+          src={imageUrl}
+          alt="Medieval Map"
+          className="w-full h-full object-cover"
         />
-    	</div>
+      </div>
 
-      {points.map((point) => (
-        
-        point.isUnlocked ? (
+      {points.map((point) => {
+        // Aseguramos que isUnlocked sea booleano
+        const unlocked = Boolean(point.isUnlocked);
+
+        // Log de debug
+        console.log(
+          `Point ${point.id} (${point.mapPointName}) isUnlocked:`,
+          point.isUnlocked,
+          "-> interpreted as boolean:", unlocked
+        );
+
+        const positionStyle = {
+          left: `${point.xPercent}%`,
+          top: `${point.yPercent}%`,
+        };
+
+        return (
           <div
             key={point.id}
             className="absolute transform -translate-x-1/2 -translate-y-1/2"
-            style={{
-              left: `${point.xPercent}%`,
-              top: `${point.yPercent}%`,
-            }}
+            style={positionStyle}
           >
-            <button
-              onClick={() => onPointClick && onPointClick(point)}
-              className="bg-black/30 hover:bg-medievalSepia hover:text-black text-white text-xl px-2 py-1 rounded-full shadow-md"
-            >
-              {point.mapPointName}
-            </button>
+            {unlocked ? (
+              <button
+                onClick={() => onPointClick && onPointClick(point)}
+                className="bg-black/30 hover:bg-medievalSepia hover:text-black text-white text-xl px-2 py-1 rounded-full shadow-md"
+              >
+                {point.mapPointName}
+              </button>
+            ) : (
+              <motion.div
+                className="relative w-[400px] max-w-[80vw] aspect-video pointer-events-none"
+                initial={{ opacity: 1, scale: 1 }}
+                animate={{
+                  scale: [1, 1.01, 1],
+                }}
+                transition={{
+                  duration: 6,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              >
+                <Image src={MAP_CONFIG.static_fog} alt="Fog Block" fill />
+              </motion.div>
+            )}
           </div>
-        ) : (
-          <div
-            key={point.id}
-            className="absolute transform -translate-x-1/2 -translate-y-1/2"
-            style={{
-              left: `${point.xPercent}%`,
-              top: `${point.yPercent}%`,
-            }}
-          >
-            <motion.div
-              className="relative w-[400px] max-w-[80vw] aspect-video pointer-events-none"
-              initial={{ opacity: 1, scale: 1 }}
-              animate={{
-                scale: [1, 1.01, 1],
-              }}
-              transition={{
-                duration: 6,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-            >
-              <Image src={MAP_CONFIG.static_fog} alt="Fog Block" fill />
-            </motion.div>
-          </div>
-        )
-      ))}
+        );
+      })}
+
       {[...Array(3)].map((_, index) => (
         <MovingFog key={index} />
       ))}

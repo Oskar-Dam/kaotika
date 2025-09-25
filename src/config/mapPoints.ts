@@ -45,8 +45,8 @@ export const MAP_POINTS  = [
       id: "3",
       name: "Angelo's Laboratory",
       mapPointName:"Angelo's Laboratory",
-      xPercent: 49,
-      yPercent: 65,
+      xPercent: 70,
+      yPercent: 80,
       isUnlocked:false,
       description: "En las cámaras profundas de la Biblioteca Arcana yace el Codex of Roles, un tomo ancestral que dicta la senda de cada ser que entra en Kaotika. Cuando un aventurero cruza el fuego sagrado de la autenticación, su esencia es registrada en la colección de jugadores. Si ya existe, el códice no lo repite; si es nuevo, se graba su nombre y rol. Así, los acólitos, villanos y grandes maestros como Istvan o Mortimer son reconocidos por el Reino y conducidos hacia su propio destino, enfrentándose a los senderos que solo su rol les permite recorrer. El villano Zárate intentará sabotear tus avances.",
       video: "./videos/locations/laboratory.mp4",
@@ -59,7 +59,7 @@ export const MAP_POINTS  = [
       id: "4",
       name: "Aivan's Chest",
       mapPointName:"Aivan's Chest",
-      xPercent: 53,
+      xPercent: 38,
       yPercent: 68,
       isUnlocked: false,
       description: "En los oscuros pasillos del castillo, Aivan, cargado de oro y miedo a perderlo, protege su cofre con artes arcanas. Sus manos ya no pueden alzarlo ni abrirlo, y por ello invoca un mecanismo encantado que obedezca la proximidad de quien ose acercarse.",
@@ -141,7 +141,7 @@ export const MAP_POINTS  = [
     },
     
     {
-      id: "9",
+      id: "10",
       name: "City of the Dead",
       mapPointName:"City of the Dead",
       xPercent: 48,
