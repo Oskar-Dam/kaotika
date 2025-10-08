@@ -43,7 +43,7 @@ export const MAP_POINTS  = [
     },
     {
       id: "3",
-      name: "Angelo's Laboratory",
+      name: "ANGELO'S LABORATORY",
       mapPointName:"Angelo's Laboratory",
       xPercent: 49,
       yPercent: 65,
