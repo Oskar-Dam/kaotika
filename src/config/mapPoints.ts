@@ -43,8 +43,8 @@ export const MAP_POINTS  = [
     },
     {
       id: "3",
-      name: "ANGELO'S LABORATORY",
-      mapPointName:"Angelo's Laboratory",
+      name: "Angelo's Laboratory",
+      mapPointName:"The Laboratory of Angelo",
       xPercent: 49,
       yPercent: 65,
       isUnlocked:false,
