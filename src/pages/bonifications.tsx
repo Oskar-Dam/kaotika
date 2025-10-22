@@ -208,19 +208,19 @@ const AcolytesPage = () => {
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="flex flex-col gap-1 text text-center">{selectedStudent?.profile.name.fullName}</ModalHeader>
+              <ModalHeader className="flex flex-col gap-1 text-2xl text text-center">{selectedStudent?.profile.name.fullName}</ModalHeader>
               <ModalBody>
                 
                 {type === "bonification" 
                 ?
                   <>
-                    <h2 className="flex flex-col gap-1 text text-center text-xl">Apply this settings?</h2>
+                    <h2 className="flex flex-col gap-1 text text-center text-3xl">Apply this settings?</h2>
                     <Slider 
                       size='md'
                       label="Gold" 
                       step={50} 
-                      maxValue={500} 
-                      minValue={-500} 
+                      maxValue={5000} 
+                      minValue={-5000} 
                       defaultValue={0}
                       color="foreground"
                       onChangeEnd={handleGold}
@@ -235,7 +235,7 @@ const AcolytesPage = () => {
                       size='md'
                       label="Experience" 
                       step={100} 
-                      maxValue={500} 
+                      maxValue={2000} 
                       minValue={0} 
                       defaultValue={0}
                       color="foreground"
@@ -248,12 +248,12 @@ const AcolytesPage = () => {
                       }}
                     />
                   </>
-                : <h2 className="flex flex-col gap-1 text text-center text-xl">Are you sure to assign unique item?</h2>}
+                : <h2 className="flex flex-col gap-1 text text-center text-3xl">Are you sure to assign unique item?</h2>}
                 
               </ModalBody>
               <ModalFooter>
-                <KaotikaButton text='ACCEPT' handleClick={type === "bonification" ? applyBonification : applyUnique} /> 
                 <KaotikaButton text='CANCEL' handleClick={onClose} /> 
+                <KaotikaButton text='ACCEPT' handleClick={type === "bonification" ? applyBonification : applyUnique} /> 
               </ModalFooter>
             </>
           )}
