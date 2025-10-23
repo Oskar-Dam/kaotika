@@ -17,8 +17,8 @@ const Header: React.FC = () => {
       <Link href="/converter">
         <span className={router.pathname == "/converter" ? "text-4xl mx-6 underline" :"text-4xl mx-6 hover:underline"}>Converter</span>
       </Link>
-      <Link href="/bonifications">
-        <span className={router.pathname == "/bonifications" ? "text-4xl mx-6 underline" :"text-4xl mx-6 hover:underline"}>Bonifications</span>
+      <Link href="/execution">
+        <span className={router.pathname == "/execution" ? "text-4xl mx-6 underline" :"text-4xl mx-6 hover:underline"}>Execution</span>
       </Link>
       <Link href="/skills">
         <span className={router.pathname == "/skills" ? "text-4xl mx-6 underline" :"text-4xl mx-6 hover:underline"}>Skills</span>
