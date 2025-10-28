@@ -218,9 +218,9 @@ const AcolytesPage = () => {
                     <Slider 
                       size='md'
                       label="Gold" 
-                      step={50} 
-                      maxValue={5000} 
-                      minValue={-5000} 
+                      step={500} 
+                      maxValue={15000} 
+                      minValue={-15000} 
                       defaultValue={0}
                       color="foreground"
                       onChangeEnd={handleGold}
@@ -235,7 +235,7 @@ const AcolytesPage = () => {
                       size='md'
                       label="Experience" 
                       step={100} 
-                      maxValue={2000} 
+                      maxValue={4000} 
                       minValue={0} 
                       defaultValue={0}
                       color="foreground"
