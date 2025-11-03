@@ -111,7 +111,7 @@ const AcolytesPage = () => {
   const applyUnique = async () => {
     try {
       setLoading(true);
-      console.log("Assign unique item");
+      console.log("Assigning unique item");
       const response = await fetch(`/api/player/unique?classroom_Id=${selectedStudent?.userId}`, {
         method: 'GET',
         headers: {
@@ -119,9 +119,14 @@ const AcolytesPage = () => {
         },
       });
       const results = await response.json();
+      if (results.status === 'OK') {
+        toast('Unique object assigned!');
+        console.log("Assigned unique item");
+      }
     } catch (error) {
       console.error('Failed to patch player bonification:', error);
     } finally {
+      onClose();
       setType("");
       setLoading(false);
     } 
