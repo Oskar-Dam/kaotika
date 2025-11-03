@@ -243,28 +243,21 @@
     }
   },
   "inventory": {
-    "helmets": [
-      ],
-    "weapons": [
-      ],
-    "armors": [
-      ],
-    "shields": [
-      ],
-    "artifacts": [
-      ],
-    "boots": [
-      ],
-    "rings": [
-      ],
-    "antidote_potions": [
-      ],
-    "healing_potions": [
-     ],
-    "enhancer_potions": [
-      ]
+    "helmets": [],
+    "weapons": [],
+    "armors": [],
+    "shields": [],
+    "artifacts": [],
+    "boots": [],
+    "rings": [],
+    "antidote_potions": [],
+    "healing_potions": [],
+    "enhancer_potions": [],
+    "ingredients": []
   },
   "tasks": [],
   "gold": 72589,
+  "skills": [],
+  "isBetrayer": false,
   "created_date": "2024-07-27T12:24:33.993Z"
 }

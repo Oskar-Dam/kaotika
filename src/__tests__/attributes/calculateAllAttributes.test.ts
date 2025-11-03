@@ -1,5 +1,5 @@
-import { calculateAllAttributes } from '../helpers/PlayerAttributes';
-import player from '../data/player.json';
+import { calculateAllAttributes } from '../../helpers/calculateAllAttributes';
+import player from '../../data/player.json';
 
 describe('calculateAllAttributes', () => {
   it('Should calculate player attributes correctly', async () => {

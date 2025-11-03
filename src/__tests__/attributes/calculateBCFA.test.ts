@@ -1,5 +1,5 @@
-import { calculateBCFA } from "../helpers/calculateBCFA"
-import { mockAttributes, mockEmptyAttributes } from "../helpers/mockAttributes"
+import { calculateBCFA } from "../../helpers/calculateBCFA"
+import { mockAttributes, mockEmptyAttributes } from "../../helpers/mockAttributes"
 
 describe('Calculate BCFA STR + INS', () => {
   it('should calculate BCFA correctly', () => {

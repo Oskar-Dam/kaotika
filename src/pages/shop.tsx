@@ -15,7 +15,7 @@ import MidContainer from '@/components/shop/MidContainer';
 import RightContainer from '@/components/shop/RightContainer';
 import ShopContainer from '@/components/shop/ShopContainer';
 import ShopHeader from '@/components/shop/ShopHeader';
-import { calculateAllAttributes } from '@/helpers/PlayerAttributes';
+import { calculateAllAttributes } from '@/helpers/calculateAllAttributes';
 import ShopOptionsHeader from '@/components/shop/ShopOptionsHeader';
 import { useSession } from 'next-auth/react';
 import { useEffect, useState } from 'react';

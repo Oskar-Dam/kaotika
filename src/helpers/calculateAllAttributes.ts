@@ -2,7 +2,7 @@ import { Modifier } from "@/_common/interfaces/Modifier";
 import { Player } from "@/_common/interfaces/Player";
 import { CHARISMA, CONSTITUTION, DEXTERITY, INSANITY, INTELLIGENCE, STRENGTH } from "../constants/constants";
 
-export const calculateAllAttributes = (player: Player, setCurrentAttributes: (attributes: Modifier) => void) => {
+export const calculateAllAttributes = async(player: Player, setCurrentAttributes: (attributes: Modifier) => void) => {
   if (player) {
 
     const equipmentModifiers: Modifier[] = [

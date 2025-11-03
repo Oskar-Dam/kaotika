@@ -35,7 +35,7 @@ import { Modifier } from '@/_common/interfaces/Modifier';
 import KaotikaButton from '@/components/KaotikaButton';
 import {GRID_NUMBER, EXP_POINTS, PROGRESS_LABEL, PROGRESS_VALUE} from '../constants/constants';
 import ProgressBar from '@/components/ProgressBar';
-import { calculateAllAttributes } from '@/helpers/PlayerAttributes';
+import { calculateAllAttributes } from '@/helpers/calculateAllAttributes';
 import { calculateHitPoints } from '@/helpers/calculateHitPoints';
 import { calculateAttack } from '@/helpers/calculateAttack';
 import { calculateDefense } from '@/helpers/calculateDefense';
@@ -447,18 +447,18 @@ const PlayerPage = () => {
             <div className="w-1/3 p-4">
               <div className="w-full h-full p-8 border-1 border-sepia bg-black/70">
                 <h2 className="text-3xl py-2 px-4 mb-4 text-center border-1 bg-black/70  border-sepia">Use your attributes wisely.</h2>
-                <ProgressBar label="Charisma" value={currentAttributes?.charisma} maxValue={300} />
-                <ProgressBar label="Constitution" value={currentAttributes?.constitution} maxValue={300} />
-                <ProgressBar label="Dexterity" value={currentAttributes?.dexterity} maxValue={300} />
-                <ProgressBar label="Insanity" value={currentAttributes?.insanity} maxValue={300} />
-                <ProgressBar label="Intelligence" value={currentAttributes?.intelligence} maxValue={300} />
-                <ProgressBar label="Strength" value={currentAttributes?.strength} maxValue={500} />
-                <ProgressBar label="Hit Points based on CON + DEX - INS/2" value={hitPoints} maxValue={1000} />
-                <ProgressBar label="Attack based on STR - INS / 2" value={attack} maxValue={1000} />
-                <ProgressBar label="Defense based on DEX + CON + INT/2" value={defense} maxValue={1000} />
-                <ProgressBar label="Magic resistance based on INT + CHA" value={magicResistance} maxValue={1000} />
-                <ProgressBar label="CFP (critical or fumble probability) based on INS" value={cfp} maxValue={1000} />
-                <ProgressBar label="BCFA (base critical & fumble attack) based on STR + INS" value={bcfa} maxValue={1000} />
+                <ProgressBar label="Charisma" value={currentAttributes?.charisma} maxValue={3000} />
+                <ProgressBar label="Constitution" value={currentAttributes?.constitution} maxValue={3000} />
+                <ProgressBar label="Dexterity" value={currentAttributes?.dexterity} maxValue={3000} />
+                <ProgressBar label="Insanity" value={currentAttributes?.insanity} maxValue={3000} />
+                <ProgressBar label="Intelligence" value={currentAttributes?.intelligence} maxValue={3000} />
+                <ProgressBar label="Strength" value={currentAttributes?.strength} maxValue={3000} />
+                <ProgressBar label="Hit Points based on CON + DEX - INS/2" value={hitPoints} maxValue={3000} />
+                <ProgressBar label="Attack based on STR - INS / 2" value={attack} maxValue={3000} />
+                <ProgressBar label="Defense based on DEX + CON + INT/2" value={defense} maxValue={3000} />
+                <ProgressBar label="Magic resistance based on INT + CHA" value={magicResistance} maxValue={3000} />
+                <ProgressBar label="CFP (critical or fumble probability) based on INS" value={cfp} maxValue={3000} />
+                <ProgressBar label="BCFA (base critical & fumble attack) based on STR + INS" value={bcfa} maxValue={3000} />
               </div>
             </div>
             <div className="w-1/3 p-4">
