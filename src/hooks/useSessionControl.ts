@@ -3,6 +3,9 @@ import { useSession } from "next-auth/react";
 import { MENTOR_EMAIL } from '@/constants/constants';
 import { Course } from "@/_common/interfaces/Course";
 import { Skill } from "@/_common/interfaces/Skill";
+import { API } from "@/constants/apiRoutes";
+import { ERROR } from "@/constants/errors";
+import { STATUS } from "@/constants/classroom";
 
 export const useSessionControl = () => {
   const { data: session } = useSession();
@@ -13,47 +16,39 @@ export const useSessionControl = () => {
   const [currentSkills, setCurrentSkills] = useState<Skill[]>([]);
 
   useEffect(() => {
-    if (!session?.user?.email) return;
-    setIsMentor(session.user.email.endsWith(MENTOR_EMAIL));
-  }, [session]);
+    const email = session?.user?.email;
+    if (!email) return;
+    setIsMentor(email.endsWith(MENTOR_EMAIL));
+  }, [session?.user?.email]);
 
   useEffect(() => {
-    const fetchCourses = async () => {
+    if (!session?.user?.email) return;
+    const fetchData = async () => {
+      setLoading(true);
+      setError(null);
       try {
-        setLoading(true);
-        const res = await fetch('/api/classroom/courses/');
-        const data = await res.json();
-        setCourses(data.courses.filter((course: any) => course.courseState === 'ACTIVE'));
-      } catch (error) {
-        setError('Failed to fetch courses');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    const fetchPlayerSkills = async () => {
-      try {
-        setLoading(true);
-        const res = await fetch(`/api/player/skills/by-email?email=${session?.user?.email}`);
-        if (res.status === 200) {
+        if (isMentor) {
+          const res = await fetch(API.COURSES);
+          if (!res.ok) throw new Error(ERROR.FETCH_COURSES);
+          const data = await res.json();
+          const activeCourses = data.courses.filter((course: any) => course.courseState === STATUS.ACTIVE)
+          setCourses(activeCourses);
+        } else {
+          const email = session.user?.email;
+          const res = await fetch(API.PLAYER_SKILLS(email));
+          if (!res.ok) throw new Error(ERROR.FETCH_SKILLS);
           const data = await res.json();
           setCurrentSkills(data.data);
-        } else {
-          setError('Failed to fetch skills');
         }
-      } catch (error) {
-        setError('Failed to fetch skills');
+      } catch (err) {
+        setError(ERROR.FETCH_DATA);
       } finally {
         setLoading(false);
       }
     };
 
-    if (isMentor) {
-      fetchCourses();
-    } else {
-      fetchPlayerSkills();
-    }
-  }, [isMentor]);
+    fetchData();
+  }, [isMentor, session?.user?.email]);
 
   return { isMentor, loading, error, courses, currentSkills };
 };
