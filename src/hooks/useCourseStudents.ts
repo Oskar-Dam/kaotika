@@ -1,4 +1,6 @@
 import { Student } from '@/_common/interfaces/Student';
+import { API } from '@/constants/apiRoutes';
+import { ERROR } from '@/constants/errors';
 import { useState, useEffect } from 'react';
 
 
@@ -13,11 +15,11 @@ export const useCourseStudents = (selectedCourse: string | null) => {
     const fetchStudents = async () => {
       try {
         setLoading(true);
-        const res = await fetch(`/api/classroom/courses/${selectedCourse}/students`);
+        const res = await fetch(API.STUDENTS_FROM_COURSE(selectedCourse));
         const data = await res.json();
         setStudents(data.students);
       } catch (error) {
-        setError('Failed to fetch students');
+        setError(ERROR.FETCH_STUDENTS);
       } finally {
         setLoading(false);
       }
