@@ -1,3 +1,5 @@
+import { API } from '@/constants/apiRoutes';
+import { ERROR } from '@/constants/errors';
 import { useState } from 'react';
 
 interface ApplySkillParams {
@@ -22,7 +24,7 @@ export function useApplySkill(onSuccess?: () => void): UseApplySkillResult {
     setError(null);
 
     try {
-      const response = await fetch('/api/player/skills/apply-skill', {
+      const response = await fetch(API.APPLY_SKILL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -31,16 +33,14 @@ export function useApplySkill(onSuccess?: () => void): UseApplySkillResult {
       });
 
       if (!response.ok) {
-        const errorText = await response.text();
-        throw new Error(errorText || 'Error applying skill');
+        throw new Error(ERROR.APPLY_SKILL);
       }
 
       const result = await response.json();
       if (onSuccess) onSuccess();
       return result;
     } catch (err: any) {
-      console.error('Error in useApplySkill:', err);
-      setError(err.message || 'Unexpected error');
+      setError(ERROR.APPLY_SKILL);
       throw err;
     } finally {
       setLoading(false);
