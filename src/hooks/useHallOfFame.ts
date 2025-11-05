@@ -1,7 +1,11 @@
 import { Player } from '@/_common/interfaces/Player';
+import { API } from '@/constants/apiRoutes';
+import { ERROR } from '@/constants/errors';
+import { useSession } from 'next-auth/react';
 import { useState, useEffect } from 'react';
 
-const useHallOfFame = (session: any) => {
+export const useHallOfFame = () => {
+  const { data: session } = useSession();
   const [players, setPlayers] = useState<Player[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -11,11 +15,11 @@ const useHallOfFame = (session: any) => {
     const fetchHallOfFame = async () => {
       try {
         setLoading(true);
-        const res = await fetch('/api/player/hall/');
+        const res = await fetch(API.HALL_OF_FAME);
         const data = await res.json();
         setPlayers(data.data);
       } catch (error) {
-        console.error('Failed to fetch Hall of Fame:', error);
+        console.error(ERROR.FETCH_HALL_OF_FAME, error);
       } finally {
         setLoading(false);
       }
@@ -26,5 +30,3 @@ const useHallOfFame = (session: any) => {
 
   return { players, loading };
 };
-
-export default useHallOfFame;

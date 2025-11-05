@@ -1,15 +1,13 @@
-import { useSession } from 'next-auth/react';
 import Image from 'next/image';
 import Layout from '@/components/Layout';
 import Loading from '@/components/Loading';
 import { Table, TableBody, TableCell, TableColumn, TableHeader, TableRow } from '@nextui-org/table';
 import { Tooltip } from '@nextui-org/react';
-import useHallOfFame from '@/hooks/useHallOfFame';
+import {useHallOfFame} from '@/hooks/useHallOfFame';
 
 
 const Hall = () => {
-  const { data: session } = useSession();
-  const { players, loading} = useHallOfFame(session)
+  const { players, loading} = useHallOfFame()
 
   if (loading) {
     return <Loading />;
