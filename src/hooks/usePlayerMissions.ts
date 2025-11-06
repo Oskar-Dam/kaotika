@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { getStudentClassrooms,getCourseTopics, getOpenTasksFromClassroom } from "@/services/googleClassroom/googleClassroom";
+import { getStudentClassrooms,getCourseTopics } from "@/services/googleClassroom/googleClassroom";
 import { useSession } from "next-auth/react";
 import { Classroom } from "@/_common/interfaces/Classroom";
 import { CLASSROOM_CONFIG } from "@/config/classroom";
 import { MAP_POINTS } from "@/config/mapPoints";
 import { MapPoint } from "@/_common/interfaces/MapPoint";
+import { ERROR } from "@/constants/errors";
 
 export const usePlayerMissions = () => {
 
@@ -22,11 +23,8 @@ export const usePlayerMissions = () => {
 
       try {
         const playerClassrooms: Classroom[] = await getStudentClassrooms(token);
-        console.log(playerClassrooms)
         const kaotikaAdventureClassroom = playerClassrooms.filter(classroom=> classroom.id === CLASSROOM_CONFIG.currentAdventure);
-        console.log(kaotikaAdventureClassroom)
         const topics = await getCourseTopics(token, kaotikaAdventureClassroom[0].id);
-
         const mapPoints = MAP_POINTS.map(point => {
           const isUnlocked = topics.some(topic =>
             topic.name.toLowerCase().includes(point.mapPointName.toLowerCase())
@@ -36,11 +34,9 @@ export const usePlayerMissions = () => {
             isUnlocked,
           };
         });
-        console.log(mapPoints)
         setMapPoints(mapPoints ?? []);
       } catch (err) {
-        console.error(err);
-        setError("Failed to fetch classrooms");
+        setError(ERROR.FETCH_CLASSROOMS);
       } finally {
         setLoading(false);
       }
