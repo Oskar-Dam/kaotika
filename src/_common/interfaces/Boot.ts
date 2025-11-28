@@ -11,6 +11,5 @@ export interface Boot {
   modifiers: Modifier,
   min_lvl: number,
   isUnique: boolean,
-  isActive: boolean,
-  isDead: boolean
+  isActive: boolean
 }
