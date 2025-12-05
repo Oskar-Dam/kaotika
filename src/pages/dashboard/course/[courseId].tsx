@@ -133,7 +133,7 @@ const CoursePage: React.FC = () => {
 
   const handleAssignmentSelect = async (assignmentId: string) => {
     setSelectedAssignment(assignmentId);
-    const currentAssignment = await assignments.filter(assignement => assignement.id === assignmentId)[0];
+    const currentAssignment = await assignments.find(assignement => assignement.id === assignmentId)[0];
     setLoading(true);
     try {                       
       const currentTopicStudents = await fetch(`/api/classroom/courses/${courseId}/assignments/${assignmentId}/students`);
@@ -173,9 +173,8 @@ const CoursePage: React.FC = () => {
   } 
 
   const handleClickAllGrades = () => {
-    
     const consolidated: Consolidated[] = [];
-    studentsGrades.map(student => {
+    studentsGrades.forEach(student => {
       if(student.state === 'RETURNED') {
         consolidated.push(new Consolidated(student.classroom_Id, student.courseWorkName, selectedAssignment!, student.grade, student.maxPoints));
       }
