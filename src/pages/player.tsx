@@ -767,7 +767,7 @@ const PlayerPage = () => {
                           size="lg" 
                           radius="sm"
                           minValue={0}
-                          maxValue={100}
+                          maxValue={10}
                           classNames={{
                             track: "drop-shadow-md border border-sepia h-2",
                             indicator: "bg-medievalSepia h-2",
