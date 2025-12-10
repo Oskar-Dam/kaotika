@@ -39,7 +39,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           userId: submission.userId as string
         });
         const student = studentRes.data;
-        console.log('Student data', student);
+
         return {
           classroom_Id: student.id,
           studentName: `${student.name?.fullName}`,
@@ -49,7 +49,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         };
       })
     );
-    
+
     res.status(200).json(grades);
   } catch (error) {
     console.error('Failed to fetch student grades:', error);

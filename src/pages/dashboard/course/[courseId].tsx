@@ -133,22 +133,28 @@ const CoursePage: React.FC = () => {
 
   const handleAssignmentSelect = async (assignmentId: string) => {
     setSelectedAssignment(assignmentId);
-    const currentAssignment = await assignments.find(assignement => assignement.id === assignmentId)[0];
+    console.log(assignmentId)
+    const currentAssignment = await assignments.find(assignement => assignement.id === assignmentId);
+    console.log(currentAssignment)
     setLoading(true);
     try {                       
       const currentTopicStudents = await fetch(`/api/classroom/courses/${courseId}/assignments/${assignmentId}/students`);
-      const currentPlayers = await fetch('/api/player/players');
       const topicStudents = await currentTopicStudents.json();
+      console.log('Topic Students');
+      console.log(topicStudents);
+
+      const currentPlayers = await fetch('/api/player/players');
+      
       const topicPlayers = await currentPlayers.json();
       const pendingStudents = removeStudentsWithTaskEvaluated(topicStudents, topicPlayers.data, assignmentId);
 
 
-      pendingStudents.forEach((student) => {
+       pendingStudents.forEach((student) => {
         student.courseWorkName = currentAssignment.title
         student.maxPoints = currentAssignment.maxPoints
       });
       console.log(pendingStudents);
-      setStudentsGrades(pendingStudents);
+      setStudentsGrades(pendingStudents); 
     } catch (error) {
       console.error('Failed to fetch student grades:', error);
     } finally {
@@ -265,7 +271,12 @@ const CoursePage: React.FC = () => {
                         <TableCell className="text-center">{grade.courseWorkName}</TableCell>
                         <TableCell className="text-center">{grade.grade} / {grade.maxPoints}</TableCell>
                         <TableCell className="text-center"><span className="mb-4 text-center">{grade.state}</span></TableCell>
-                        <TableCell className="text-center">{grade.state === "RETURNED" ? <KaotikaButton  handleClick={() => handleClick(grade.classroom_Id, grade.courseWorkName, grade.grade, grade.maxPoints)} text="SEND" /> : grade.state === "DONE" ? <span className="mb-4 text-green-500">NO</span> : <span className="mb-4 text-red-500">PENDING</span>}</TableCell>
+                        <TableCell className="text-center">{
+                          grade.state === "RETURNED" ? 
+                          <KaotikaButton  handleClick={() => handleClick(grade.classroom_Id, grade.courseWorkName, grade.grade, grade.maxPoints)} text="SEND" /> : 
+                          grade.state === "DONE" ? 
+                          <span className="mb-4 text-green-500">NO</span> : 
+                          <span className="mb-4 text-red-500">PENDING</span>}</TableCell>
                       </TableRow>
                     ))}
                   </TableBody>
