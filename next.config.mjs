@@ -1,16 +1,18 @@
-/** @type {import('next').NextConfig} */
 import { createRequire } from "module";
 
 const require = createRequire(import.meta.url);
-const json = require("./package.json");
-
+/** @type {import('next').NextConfig} */
 const nextConfig = {
-    images: {
-        domains: ['lh3.googleusercontent.com'],
-    },
-    publicRuntimeConfig: {
-        version: json.version,
-    },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "lh3.googleusercontent.com",
+        port: "",
+        pathname: "/**",
+      },
+    ],
+  }
 };
 
 export default nextConfig;

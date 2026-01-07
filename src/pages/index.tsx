@@ -1,15 +1,14 @@
 import { useSession } from "next-auth/react";
 import { useRouter } from 'next/router';
-import getConfig from 'next/config';
 import { useEffect } from 'react';
 import GoogleLoginButton from "../components/GoogleLoginButton";
 import Loading from '@/components/Loading';
 import {ACOLYTE_EMAIL, MENTOR_EMAIL} from '@/constants/constants';
+import { version } from '../../package.json';
 
 const Home = () => {
   const { data: session, status } = useSession();
   const router = useRouter();
-  const { publicRuntimeConfig } = getConfig();
 
   useEffect(() => {
     if (status === 'authenticated') {
@@ -62,7 +61,7 @@ const Home = () => {
             <GoogleLoginButton />
           </div>
           <div>
-            <h1 className="text-3xl mb-4 text-medievalSepia">Developed by Mortimer. Version: {publicRuntimeConfig?.version}</h1>
+            <h1 className="text-3xl mb-4 text-medievalSepia">Developed by Mortimer. Version: {version}</h1>
           </div>
         </>
         ) : (

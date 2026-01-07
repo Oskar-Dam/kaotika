@@ -157,57 +157,57 @@ const AcolytesPage = () => {
 						</select>
 					</div>)}
 				{selectedCourse && (
-              <>
-                <Table 
-                  color="warning"
-                  selectionMode="none" 
-                  classNames={{
-                    table: "text-xl",
-                    td: "text-xl",
-                    tr: "text-xl",
-                    tbody: "text-xl"
+          <>
+            <Table 
+              color="warning"
+              selectionMode="none" 
+              classNames={{
+                table: "text-xl",
+                td: "text-xl",
+                tr: "text-xl",
+                tbody: "text-xl"
 
-                  }} 
-                  aria-label="Kaotika Students">
-                  <TableHeader>
-                    <TableColumn className="text-center text-xl text-black">CLASSROOM ID</TableColumn>
-                    <TableColumn className="text-center text-xl text-black">NAME</TableColumn>
-                    <TableColumn className="text-center text-xl text-black">ASSIGN UNIQUE ITEM</TableColumn>
-										<TableColumn className="text-center text-xl text-black">ASSIGN GOLD & EXP</TableColumn>
-                  </TableHeader>
-                  <TableBody>
-                    {students.map((student) => (
-                      <TableRow key={student.userId}>
-                        <TableCell >{student.userId}</TableCell>
-                        <TableCell className="text-center"><span>{student.profile.name.fullName.toUpperCase()}</span></TableCell>
-                        <TableCell className="text-center">
-                          <div className="flex justify-center">
-                            <button
-                              onClick={() => handleClick(student, "unique")}
-                              className="flex items-center bg-medievalSepia text-black text-2xl py-2 px-4 rounded  hover:bg-darkSepia transition"
-                              >
-                              <Image src="/images/icons/level.png" alt="Cross imager" width={48} height={48} className="rounded-full" />
-                              <span>Assign unique item</span> 
-                            </button>
-                          </div>
-                        </TableCell>
-												<TableCell className="text-center">
-                          <div className="flex justify-center">
-                            <button
-                              onClick={() => handleClick(student, "bonification")}
-                              className="flex items-center bg-medievalSepia text-black text-2xl py-2 px-4 rounded  hover:bg-darkSepia transition"
-                              >
-                              <Image src="/images/icons/gold.png" alt="Cross imager" width={48} height={48} className="rounded-full" />
-                              <span>Apply bonification</span>  
-                            </button>
-                          </div>
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </>
-            )}
+              }} 
+              aria-label="Kaotika Students">
+              <TableHeader>
+                <TableColumn className="text-center text-xl text-black">CLASSROOM ID</TableColumn>
+                <TableColumn className="text-center text-xl text-black">NAME</TableColumn>
+                <TableColumn className="text-center text-xl text-black">ASSIGN UNIQUE ITEM</TableColumn>
+                <TableColumn className="text-center text-xl text-black">ASSIGN GOLD & EXP</TableColumn>
+              </TableHeader>
+              <TableBody>
+                {students.map((student) => (
+                  <TableRow key={student.userId}>
+                    <TableCell >{student.userId}</TableCell>
+                    <TableCell className="text-center"><span>{student.profile.name.fullName.toUpperCase()}</span></TableCell>
+                    <TableCell className="text-center">
+                      <div className="flex justify-center">
+                        <button
+                          onClick={() => handleClick(student, "unique")}
+                          className="flex items-center bg-medievalSepia text-black text-2xl py-2 px-4 rounded  hover:bg-darkSepia transition"
+                          >
+                          <Image src="/images/icons/level.png" alt="Cross imager" width={48} height={48} className="rounded-full" />
+                          <span>Assign unique item</span> 
+                        </button>
+                      </div>
+                    </TableCell>
+                    <TableCell className="text-center">
+                      <div className="flex justify-center">
+                        <button
+                          onClick={() => handleClick(student, "bonification")}
+                          className="flex items-center bg-medievalSepia text-black text-2xl py-2 px-4 rounded  hover:bg-darkSepia transition"
+                          >
+                          <Image src="/images/icons/gold.png" alt="Cross imager" width={48} height={48} className="rounded-full" />
+                          <span>Apply bonification</span>  
+                        </button>
+                      </div>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </>
+        )}
     	</div>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
