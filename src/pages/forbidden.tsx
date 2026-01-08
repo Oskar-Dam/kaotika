@@ -1,10 +1,8 @@
-import getConfig from 'next/config';
+import { version } from '../../package.json';
 import {  } from 'react';
 
 const Forbidden = () => {
   
-  const { publicRuntimeConfig } = getConfig();
-
   return (
     <div className="flex items-center justify-center h-screen">
       <div className="text-center flex-row">
@@ -21,7 +19,7 @@ const Forbidden = () => {
 					<h1 className="text-3xl mb-4 text-medievalSepia">You are not allowed to enter into Kaotika's Realm</h1>
 				</div>
 				<div>
-					<h1 className="text-3xl mb-4 text-medievalSepia">Developed by Mortimer. Version: {publicRuntimeConfig?.version}</h1>
+					<h1 className="text-3xl mb-4 text-medievalSepia">Developed by Mortimer. Version: {version}</h1>
 				</div>
       </div>
     </div>
