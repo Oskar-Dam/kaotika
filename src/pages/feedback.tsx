@@ -21,7 +21,7 @@ const feedback = () => {
   const { data: session } = useSession();
   const {isOpen, onOpen, onClose, onOpenChange} = useDisclosure();
   const [courses, setCourses] = useState<Course[]>([]);
-  const [selectedCourse, setSelectedCourse] = useState<string | null>(null);
+  const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
   const [students, setStudents] = useState<Student[]>([]);
   const [selectedStudent, setSelectedStudent] = useState<Student | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
@@ -35,8 +35,9 @@ const feedback = () => {
 
   const isFieldValid = (value: string) => value.trim().length >= MIN_LENGTH;
   
-  const handleCourseSelect = (courseId: string) => {
-    setSelectedCourse(courseId);
+  const handleCourseSelect = (course: string) => {
+    const currentCourse = JSON.parse(course);
+    setSelectedCourse(currentCourse);
   };
 
   useEffect(() => {
@@ -64,7 +65,7 @@ const feedback = () => {
     const fetchStudents = async () => {
       try {
         setLoading(true);
-        const res = await fetch(`/api/classroom/courses/${selectedCourse}/students`);
+        const res = await fetch(`/api/classroom/courses/${selectedCourse.id}/students`);
         const data = await res.json();
         console.log(data.students)
         setStudents(data.students);
@@ -87,7 +88,7 @@ const feedback = () => {
   }
 
   const handleFeedbackRequest = (student: Student) => {
-    //setSelectedStudent(student);
+    //TODO get all student feedbacks
   }
 
   const handleChange =
@@ -95,19 +96,35 @@ const feedback = () => {
       setValues((prev) => ({ ...prev, [field]: value }));
     };
 
-  const handleAccept = () => {  
+  const handleAccept = async () => {  
     if(isFieldValid(values.strengths) && isFieldValid(values.improvement) && isFieldValid(values.action)) {
-      const payload = {
-        strengths: values.strengths,
-        improvement: values.improvement,
-        action: values.action,
-      }; 
-      console.log(payload)  
-      onClose();
+      try {
+        setLoading(true);
+        console.log("Create a new feedback");
+        const response = await fetch('/api/player/feedback', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({  
+            strengths: values.strengths,
+            improvement: values.improvement,
+            action: values.action,
+            selectedCourse: selectedCourse?.name,
+            name: selectedStudent?.profile.name.fullName,
+            userId: selectedStudent?.userId
+          }),
+        });
+        const results = await response.json();
+        console.log(results);
+      } catch (error) {
+        console.error('Failed to create a new feedback:', error);
+      } finally {
+        onClose();
+        setLoading(false);
+      } 
     }    
   };
-
-  
 
   if (loading) {
     return <Loading />;
@@ -127,7 +144,7 @@ const feedback = () => {
 								{loading ? 'Loading courses...' : 'Select a course'}
 							</option>
 							{courses?.map((course) => (
-								<option key={course.id} value={course.id}>
+								<option key={course.id} value={JSON.stringify(course)}>
 									{course.name}
 								</option>
 							))}
