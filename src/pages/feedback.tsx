@@ -9,7 +9,12 @@ import Image from 'next/image';
 import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure, SliderValue} from "@nextui-org/react";
 import KaotikaButton from '@/components/KaotikaButton';
 import Loading from '@/components/Loading';
-import { FaLess } from 'react-icons/fa';
+
+type FeedbackValues = {
+  strengths: string;
+  improvement: string;
+  action: string;
+};
 
 const feedback = () => {
 
@@ -20,65 +25,89 @@ const feedback = () => {
   const [students, setStudents] = useState<Student[]>([]);
   const [selectedStudent, setSelectedStudent] = useState<Student | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
-  const [action, setAction] = React.useState(null);
+  const [values, setValues] = useState<FeedbackValues>({
+    strengths: "",
+    improvement: "",
+    action: "",
+  });
+
+  const MIN_LENGTH = 50;
+
+  const isFieldValid = (value: string) => value.trim().length >= MIN_LENGTH;
   
   const handleCourseSelect = (courseId: string) => {
     setSelectedCourse(courseId);
   };
 
   useEffect(() => {
-      console.log("useEffect Fetching courses");
-      if (!session) return;
-      const fetchCourses = async () => {
-        try {
-          setLoading(true);
-          console.log("Fetching courses");
-          const res = await fetch('/api/classroom/courses/');
-          const data = await res.json();
-          setCourses(data.courses.filter((course: { courseState: string; }) => course.courseState === "ACTIVE"));
-        } catch (error) {
-          console.error('Failed to fetch courses:', error);
-        } finally {
-          setLoading(false);
-        }
-      };
+    console.log("useEffect Fetching courses");
+    if (!session) return;
+    const fetchCourses = async () => {
+      try {
+        setLoading(true);
+        console.log("Fetching courses");
+        const res = await fetch('/api/classroom/courses/');
+        const data = await res.json();
+        setCourses(data.courses.filter((course: { courseState: string; }) => course.courseState === "ACTIVE"));
+      } catch (error) {
+        console.error('Failed to fetch courses:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCourses();
+  }, []);
+
+  useEffect(() => {
+    if (!session || !selectedCourse) return;
+    const fetchStudents = async () => {
+      try {
+        setLoading(true);
+        const res = await fetch(`/api/classroom/courses/${selectedCourse}/students`);
+        const data = await res.json();
+        console.log(data.students)
+        setStudents(data.students);
+      } catch (error) {
+        console.error('Failed to fetch students:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchStudents();
+  }, [selectedCourse]);
+
+  useEffect(() => {
+    if(selectedStudent) onOpen();
+  }, [selectedStudent])
+
+  const handleNewFeedback = (student: Student) => {
+    setSelectedStudent(student);
+  }
+
+  const handleFeedbackRequest = (student: Student) => {
+    //setSelectedStudent(student);
+  }
+
+  const handleChange =
+    (field: keyof FeedbackValues) => (value: string) => {
+      setValues((prev) => ({ ...prev, [field]: value }));
+    };
+
+  const handleAccept = () => {  
+    if(isFieldValid(values.strengths) && isFieldValid(values.improvement) && isFieldValid(values.action)) {
+      const payload = {
+        strengths: values.strengths,
+        improvement: values.improvement,
+        action: values.action,
+      }; 
+      console.log(payload)  
+      onClose();
+    }    
+  };
+
   
-      fetchCourses();
-    }, []);
-
-    useEffect(() => {
-      if (!session || !selectedCourse) return;
-      const fetchStudents = async () => {
-        try {
-          setLoading(true);
-          const res = await fetch(`/api/classroom/courses/${selectedCourse}/students`);
-          const data = await res.json();
-          console.log(data.students)
-          setStudents(data.students);
-        } catch (error) {
-          console.error('Failed to fetch students:', error);
-        } finally {
-          setLoading(false);
-        }
-      };
-  
-      fetchStudents();
-    }, [selectedCourse]);
-
-    useEffect(() => {
-      if(selectedStudent) onOpen();
-    }, [selectedStudent])
-
-    const handleNewFeedback = (student: Student) => {
-      setSelectedStudent(student);
-    }
-
-    const handleFeedbackRequest = (student: Student) => {
-      //setSelectedStudent(student);
-    }
-    const handleStrength = (value: string) => {
-      console.log(value)
-    }
 
   if (loading) {
     return <Loading />;
@@ -155,32 +184,76 @@ const feedback = () => {
           </>
         )}
       </div>
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
-        <ModalContent>
-          {(onClose) => (
-            <>
-              <ModalHeader className="flex flex-col gap-1 text-2xl text text-center">{selectedStudent?.profile.name.fullName}</ModalHeader>
-              <ModalBody>
-                <>
-                  <Textarea
-                    className="max-w-xs"
-                    errorMessage="The description should be at least 255 characters long."
-                    isInvalid={false}
-                    label="Description"
-                    placeholder="Enter your description"
-                    variant="bordered"
-                    onValueChange={(value)=>handleStrength(value)}
-                  />
-                </>  
-              </ModalBody>
-              <ModalFooter>
-                <KaotikaButton text='CANCEL' handleClick={onClose} /> 
-                <KaotikaButton text='ACCEPT' handleClick={onClose} /> 
-              </ModalFooter>
-            </>
-          )}
-        </ModalContent>
-      </Modal>
+      <Modal isOpen={isOpen} size="5xl" onOpenChange={onOpenChange}>
+      <ModalContent>
+        {(onClose) => (
+          <>
+            <ModalHeader className="flex flex-col gap-1 text-4xl text-center font-normal">
+              {selectedStudent?.profile.name.fullName}
+            </ModalHeader>
+
+            <ModalBody className="text-xl font-normal">
+              <Textarea
+                size="lg"
+                fullWidth
+                label="Observed Strengths"
+                labelPlacement="outside"
+                variant="bordered"
+                value={values.strengths}
+                onValueChange={handleChange("strengths")}
+                classNames={{
+                  base: "max-w-full",         
+                  inputWrapper: "min-h-40",   
+                  label: "text-3xl text-white",           
+                  input: "text-3xl text-white p-4",       
+                }}
+                isInvalid={!isFieldValid(values.strengths)}
+                errorMessage={`Mínimo ${MIN_LENGTH} caracteres (actual: ${values.strengths.trim().length})`}
+              />
+              <Textarea
+                size="lg"
+                fullWidth
+                label="Critical Improvement Point"
+                labelPlacement="outside"
+                variant="bordered"
+                value={values.improvement}
+                onValueChange={handleChange("improvement")}
+                classNames={{
+                  base: "max-w-full",         
+                  inputWrapper: "min-h-40",   
+                  label: "text-3xl text-white",           
+                  input: "text-3xl text-white p-4",       
+                }}
+                isInvalid={!isFieldValid(values.improvement)}
+                errorMessage={`Mínimo ${MIN_LENGTH} caracteres (actual: ${values.improvement.trim().length})`}
+              />
+              <Textarea
+                size="lg"
+                fullWidth
+                label="Immediate Action"
+                labelPlacement="outside"
+                variant="bordered"
+                value={values.action}
+                onValueChange={handleChange("action")}
+                classNames={{
+                  base: "max-w-full",         
+                  inputWrapper: "min-h-40",   
+                  label: "text-3xl text-white",           
+                  input: "text-3xl text-white p-4",       
+                }}
+                isInvalid={!isFieldValid(values.action)}
+                errorMessage={`Mínimo ${MIN_LENGTH} caracteres (actual: ${values.action.trim().length})`}
+              />
+            </ModalBody>
+
+            <ModalFooter>
+              <KaotikaButton text="CANCEL" handleClick={onClose} />
+              <KaotikaButton text="ACCEPT" handleClick={handleAccept} />
+            </ModalFooter>
+          </>
+        )}
+      </ModalContent>
+    </Modal>
     </Layout>
   )
 }
